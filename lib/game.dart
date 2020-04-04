@@ -9,6 +9,11 @@ class GamePage extends StatelessWidget {
     'images/characterimg3.png',
     'images/characterimg4.png',
     'images/characterimg5.png',
+    'images/characterimg1.png',
+    'images/characterimg2.png',
+    'images/characterimg3.png',
+    'images/characterimg4.png',
+    'images/characterimg5.png',
   ];
   @override
   Widget build(BuildContext context) {
@@ -22,7 +27,7 @@ class GamePage extends StatelessWidget {
           children: <Widget>[
             Expanded(
                 child: Padding(
-              padding: const EdgeInsets.only(top: 10.0),
+              padding: const EdgeInsets.only(top: 30.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
@@ -31,7 +36,7 @@ class GamePage extends StatelessWidget {
                       Icon(
                         Icons.attach_money,
                         size: 50.0,
-                        color: Colors.red,
+                        color: Colors.grey,
                       ),
                       Text(
                         moneyVar.toString(),
@@ -44,7 +49,7 @@ class GamePage extends StatelessWidget {
                       Icon(
                         Icons.person_outline,
                         size: 50.0,
-                        color: Colors.red,
+                        color: Colors.grey,
                       ),
                       Text(
                         personVar.toString(),
@@ -57,7 +62,7 @@ class GamePage extends StatelessWidget {
                       Icon(
                         Icons.restaurant,
                         size: 50.0,
-                        color: Colors.red,
+                        color: Colors.grey,
                       ),
                       Text(
                         foodVar.toString(),
@@ -70,7 +75,7 @@ class GamePage extends StatelessWidget {
                       Icon(
                         Icons.local_hospital,
                         size: 50.0,
-                        color: Colors.red,
+                        color: Colors.grey,
                       ),
                       Text(
                         healthVar.toString(),
@@ -88,10 +93,10 @@ class GamePage extends StatelessWidget {
                 totalNum: cardImages.length,
                 stackNum: 3,
                 swipeEdge: 4.0,
-                maxWidth: MediaQuery.of(context).size.width * 0.9,
-                maxHeight: MediaQuery.of(context).size.width * 0.9,
-                minWidth: MediaQuery.of(context).size.width * 0.8,
-                minHeight: MediaQuery.of(context).size.width * 0.8,
+                maxWidth: MediaQuery.of(context).size.width * 1.0,
+                maxHeight: MediaQuery.of(context).size.width * 1.4,
+                minWidth: MediaQuery.of(context).size.width * 0.5,
+                minHeight: MediaQuery.of(context).size.width * 0.7,
                 cardBuilder: (context, index) => Card(
                   child: Image.asset('${cardImages[index]}'),
                 ),
@@ -116,3 +121,9 @@ class GamePage extends StatelessWidget {
 //Icon(Icons.local_hospital),
 //],
 //),
+
+//
+//maxWidth: MediaQuery.of(context).size.width * 0.9,
+//maxHeight: MediaQuery.of(context).size.width * 0.9,
+//minWidth: MediaQuery.of(context).size.width * 0.8,
+//minHeight: MediaQuery.of(context).size.width * 0.8,

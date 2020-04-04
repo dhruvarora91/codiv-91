@@ -4,9 +4,11 @@ import 'constants.dart';
 
 class GamePage extends StatelessWidget {
   List<String> cardImages = [
-    'images/kuchbhi.PNG',
-    'images/card-2.jpg',
-    'images/card-3.jpg',
+    'images/characterimg1.png',
+    'images/characterimg2.png',
+    'images/characterimg3.png',
+    'images/characterimg4.png',
+    'images/characterimg5.png',
   ];
   @override
   Widget build(BuildContext context) {
@@ -53,7 +55,7 @@ class GamePage extends StatelessWidget {
                   Column(
                     children: <Widget>[
                       Icon(
-                        Icons.fastfood,
+                        Icons.restaurant,
                         size: 50.0,
                         color: Colors.red,
                       ),

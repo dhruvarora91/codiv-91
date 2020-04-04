@@ -15,7 +15,7 @@ class Codiv extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(15.0),
               child: Image(
-                image: AssetImage("images/kuchbhi.PNG"),
+                image: AssetImage("images/graph.gif"),
               ),
             ),
           ),

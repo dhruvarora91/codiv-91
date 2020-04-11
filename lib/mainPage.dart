@@ -7,9 +7,6 @@ class Codiv extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-//      appBar: AppBar(
-//        title: Center(child: Text("Codiv-91")),
-//      ),
       body: Column(
         children: <Widget>[
           Expanded(

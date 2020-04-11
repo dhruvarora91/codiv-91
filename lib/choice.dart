@@ -22,9 +22,9 @@ class choice extends StatelessWidget {
               child: Text('Stats for World'),
               onPressed: () {
                 Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => LoadingScreenWorld()));
+                  context,
+                  MaterialPageRoute(builder: (context) => LoadingScreenWorld()),
+                );
               },
             ),
           ],

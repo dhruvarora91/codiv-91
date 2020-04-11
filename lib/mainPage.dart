@@ -1,3 +1,4 @@
+import 'package:codiv91/settings.dart';
 import 'package:flutter/material.dart';
 import 'bottom_button.dart';
 
@@ -5,11 +6,19 @@ class Codiv extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-//      appBar: AppBar(
-//        title: Center(child: Text("Codiv-91")),
-//      ),
       body: Column(
         children: <Widget>[
+          Expanded(
+            child: FlatButton(
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => Settings()));
+              },
+              child: Center(
+                child: Icon(Icons.settings),
+              ),
+            ),
+          ),
           Expanded(
             flex: 5,
             child: Padding(

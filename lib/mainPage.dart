@@ -1,5 +1,7 @@
+import 'package:codiv91/game.dart';
 import 'package:flutter/material.dart';
 import 'bottom_button.dart';
+import 'choice.dart';
 
 class Codiv extends StatelessWidget {
   @override
@@ -14,8 +16,14 @@ class Codiv extends StatelessWidget {
             flex: 5,
             child: Padding(
               padding: const EdgeInsets.all(15.0),
-              child: Image(
-                image: AssetImage("images/graph.gif"),
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => choice()));
+                },
+                child: Image(
+                  image: AssetImage("images/graph.gif"),
+                ),
               ),
             ),
           ),
@@ -23,7 +31,8 @@ class Codiv extends StatelessWidget {
             child: BottomButton(
               buttonTitle: 'PLAY',
               onTap: () {
-                Navigator.pushNamed(context, '/first');
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => GamePage()));
               },
             ),
           )

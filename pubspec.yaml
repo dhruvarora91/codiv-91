@@ -26,6 +26,7 @@ dependencies:
   http: ^0.12.0+4
   syncfusion_flutter_charts: ^18.1.42
   flutter_tindercard: ^0.1.8
+  flutter_spinkit: ^4.1.2+1
 
 
 

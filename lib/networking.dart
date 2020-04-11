@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-//url = 'https://api.thevirustracker.com/free-api?countryTotal=IN'
+//urlIndia = 'https://api.thevirustracker.com/free-api?countryTotal=IN'
+//urlWorld = 'https://api.thevirustracker.com/free-api?global=stats'
 
 class NetworkHelper {
   NetworkHelper(this.url);

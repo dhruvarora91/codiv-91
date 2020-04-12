@@ -4,7 +4,24 @@ import 'package:codiv91/constants.dart';
 import 'package:codiv91/preventive_measures.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+
 import 'reusable_card.dart';
+
+GoogleSignIn _googleSignIn = GoogleSignIn(
+  scopes: [
+    'email',
+    'https://www.googleapis.com/auth/contacts.readonly',
+  ],
+);
+
+Future<void> _handleSignIn() async {
+  try {
+    await _googleSignIn.signIn();
+  } catch (error) {
+    print(error);
+  }
+}
 
 class Settings extends StatelessWidget {
   @override
@@ -71,9 +88,14 @@ class Settings extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: <Widget>[
-                          Text(
-                            'Login with Google',
-                            style: kSettingsTextStyle,
+                          GestureDetector(
+                            onTap: () {
+                              _handleSignIn();
+                            },
+                            child: Text(
+                              'Login with Google',
+                              style: kSettingsTextStyle,
+                            ),
                           ),
                         ],
                       ),

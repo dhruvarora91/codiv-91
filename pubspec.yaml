@@ -25,7 +25,10 @@ dependencies:
   cupertino_icons: ^0.1.2
   syncfusion_flutter_charts: ^18.1.42
   flutter_tindercard: ^0.1.8
-
+  http: ^0.12.0+4
+  webview_flutter: ^0.3.19+9
+  flutter_share: ^1.0.2+1
+  flutter_spinkit: ^4.1.2+1
 
 
 dev_dependencies:

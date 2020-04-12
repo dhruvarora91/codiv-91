@@ -40,7 +40,7 @@ class GamePage extends StatelessWidget {
                       ),
                       Text(
                         moneyVar.toString(),
-                        style: kNumberTextStyle,
+                        style: kPointsTextStyle,
                       ),
                     ],
                   ),
@@ -53,7 +53,7 @@ class GamePage extends StatelessWidget {
                       ),
                       Text(
                         personVar.toString(),
-                        style: kNumberTextStyle,
+                        style: kPointsTextStyle,
                       ),
                     ],
                   ),
@@ -66,7 +66,7 @@ class GamePage extends StatelessWidget {
                       ),
                       Text(
                         foodVar.toString(),
-                        style: kNumberTextStyle,
+                        style: kPointsTextStyle,
                       ),
                     ],
                   ),
@@ -79,7 +79,7 @@ class GamePage extends StatelessWidget {
                       ),
                       Text(
                         healthVar.toString(),
-                        style: kNumberTextStyle,
+                        style: kPointsTextStyle,
                       ),
                     ],
                   ),

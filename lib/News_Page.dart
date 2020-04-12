@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'Network_Helper.dart';
 import 'package:codiv91/News_Article.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class NewsScreen extends StatefulWidget {
   @override
@@ -38,7 +39,10 @@ class _NewsScreenState extends State<NewsScreen> {
               if (snapshot.data == null) {
                 return Container(
                     child: Center(
-                  child: Text('Loading...'),
+                  child: SpinKitWave(
+                    color: Colors.white,
+                    size: 50.0,
+                  ),
                 ));
               } else {
                 return RefreshIndicator(

@@ -1,3 +1,4 @@
+import 'package:codiv91/game.dart';
 import 'package:codiv91/settings.dart';
 import 'package:flutter/material.dart';
 import 'bottom_button.dart';
@@ -9,12 +10,12 @@ class Codiv extends StatelessWidget {
       body: Column(
         children: <Widget>[
           Expanded(
-            child: FlatButton(
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => Settings()));
-              },
-              child: Center(
+            child: Center(
+              child: FlatButton(
+                onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => Settings()));
+            },
                 child: Icon(Icons.settings),
               ),
             ),
@@ -32,7 +33,8 @@ class Codiv extends StatelessWidget {
             child: BottomButton(
               buttonTitle: 'PLAY',
               onTap: () {
-                Navigator.pushNamed(context, '/first');
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => GamePage()));
               },
             ),
           )

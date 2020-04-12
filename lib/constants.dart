@@ -35,3 +35,7 @@ const kNumberIndiaSubTextStyle = TextStyle(
   fontWeight: FontWeight.w500,
   color: Color(0xFF8D8E98),
 );
+
+const kSettingsTextStyle = TextStyle(
+  fontSize: 20.0,
+);

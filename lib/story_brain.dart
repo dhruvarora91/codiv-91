@@ -57,6 +57,10 @@ class StoryBrain {
   String getImg() => _storyData[index].characterImg;
   int getLength() => _storyData.length;
 
+  String getChoice1() => _storyData[index].choice1;
+  String getChoice2() => _storyData[index].choice2;
+
+
   int updateMoneyLeft() => _storyData[index - 1].factorChoice1[0];
   int updatePersonLeft() => _storyData[index - 1].factorChoice1[1];
   int updateFoodLeft() => _storyData[index - 1].factorChoice1[2];
@@ -66,4 +70,5 @@ class StoryBrain {
   int updatePersonRight() => _storyData[index - 1].factorChoice2[1];
   int updateFoodRight() => _storyData[index - 1].factorChoice2[2];
   int updateHealthRight() => _storyData[index - 1].factorChoice2[3];
+
 }

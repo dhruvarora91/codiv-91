@@ -102,21 +102,43 @@ class _GamePageState extends State<GamePage> {
                         totalNum: storyBrain.getLength(),
                         stackNum: 3,
                         swipeEdge: 4.0,
-                        maxWidth: MediaQuery.of(context).size.width * 1.0,
+                        maxWidth: MediaQuery.of(context).size.width * 0.9,
                         maxHeight: MediaQuery.of(context).size.width * 1.4,
                         minWidth: MediaQuery.of(context).size.width * 0.5,
                         minHeight: MediaQuery.of(context).size.width * 0.7,
                         cardBuilder: (context, index) {
-                          return Image.asset(storyBrain.getImg());
+                          return Stack(
+                            children: <Widget>[
+                              Image.asset(storyBrain.getImg()),
+                              Container(
+                                  alignment: Alignment.topLeft,
+                                  child: Text(
+                                    storyBrain.getChoice1(),
+                                    style: TextStyle(
+                                        color: Colors.pink,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 22.0),
+                                  )),
+                              Container(
+                                  alignment: Alignment.topRight,
+                                  child: Text(
+                                    storyBrain.getChoice2(),
+                                    style: TextStyle(
+                                        color: Colors.pink,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 22.0),
+                                  )),
+                            ],
+                          );
                         },
                         cardController: controller = CardController(),
                         swipeUpdateCallback:
                             (DragUpdateDetails details, Alignment align) {
                           /// Get swiping card's alignment
                           setState(() {
-//                            if (align.x == 0) {
-//                              choice = '';
-//                            }
+                            if (align.x == 0) {
+                              choice = 'yo';
+                            }
                             if (align.x < 0) {
                               //Card is LEFT swiping
                               print('Going left');

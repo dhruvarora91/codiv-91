@@ -48,4 +48,6 @@ class StoryBrain {
   String getName() => _storyData[index].characterName;
   String getImg() => _storyData[index].characterImg;
   int getLength() => _storyData.length;
+  String getChoice1() => _storyData[index].choice1;
+  String getChoice2() => _storyData[index].choice2;
 }

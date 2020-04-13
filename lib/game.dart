@@ -48,11 +48,8 @@ class _GamePageState extends State<GamePage> {
             Expanded(
                 flex: 2,
                 child: Padding(
-
                   padding: const EdgeInsets.only(
                     top: 30.0,
-
-
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -61,17 +58,14 @@ class _GamePageState extends State<GamePage> {
                         icon: Icons.attach_money,
                         value: moneyVar,
                       ),
-
                       Factors(
                         icon: Icons.person_outline,
                         value: personVar,
-
                       ),
                       Factors(
                         icon: Icons.restaurant,
                         value: foodVar,
                       ),
-
                       Factors(
                         icon: Icons.local_hospital,
                         value: healthVar,
@@ -98,21 +92,43 @@ class _GamePageState extends State<GamePage> {
                         totalNum: storyBrain.getLength(),
                         stackNum: 3,
                         swipeEdge: 4.0,
-                        maxWidth: MediaQuery.of(context).size.width * 1.0,
+                        maxWidth: MediaQuery.of(context).size.width * 0.9,
                         maxHeight: MediaQuery.of(context).size.width * 1.4,
                         minWidth: MediaQuery.of(context).size.width * 0.5,
                         minHeight: MediaQuery.of(context).size.width * 0.7,
                         cardBuilder: (context, index) {
-                          return Image.asset(storyBrain.getImg());
+                          return Stack(
+                            children: <Widget>[
+                              Image.asset(storyBrain.getImg()),
+                              Container(
+                                  alignment: Alignment.topLeft,
+                                  child: Text(
+                                    storyBrain.getChoice1(),
+                                    style: TextStyle(
+                                        color: Colors.pink,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 22.0),
+                                  )),
+                              Container(
+                                  alignment: Alignment.topRight,
+                                  child: Text(
+                                    storyBrain.getChoice2(),
+                                    style: TextStyle(
+                                        color: Colors.pink,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 22.0),
+                                  )),
+                            ],
+                          );
                         },
                         cardController: controller = CardController(),
                         swipeUpdateCallback:
                             (DragUpdateDetails details, Alignment align) {
                           /// Get swiping card's alignment
                           setState(() {
-//                            if (align.x == 0) {
-//                              choice = '';
-//                            }
+                            if (align.x == 0) {
+                              choice = 'yo';
+                            }
                             if (align.x < 0) {
                               //Card is LEFT swiping
                               print('Going left');
@@ -158,8 +174,6 @@ class _GamePageState extends State<GamePage> {
                       storyBrain.getName(),
                       textAlign: TextAlign.center,
                     ),
-
-
                   ),
                 ],
               ),

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_tindercard/flutter_tindercard.dart';
 import 'constants.dart';
 import 'factors.dart';
+import 'story_brain.dart';
 
 enum dir { left, right }
 int moneyVar = 20;
@@ -11,6 +12,8 @@ class GamePage extends StatefulWidget {
   @override
   _GamePageState createState() => _GamePageState();
 }
+
+StoryBrain storyBrain = StoryBrain();
 
 class _GamePageState extends State<GamePage> {
   List<InteractiveCard> characterCards = [
@@ -78,7 +81,7 @@ class _GamePageState extends State<GamePage> {
                   Expanded(
                     flex: 2,
                     child: Text(
-                      'question\nquestion\nquestion\nquestion\nquestion\n',
+                      storyBrain.getQuestion(),
                       textAlign: TextAlign.center,
                     ),
                   ),
@@ -86,14 +89,16 @@ class _GamePageState extends State<GamePage> {
                     flex: 6,
                     child: TinderSwapCard(
                         orientation: AmassOrientation.BOTTOM,
-                        totalNum: characterCards.length,
+                        totalNum: storyBrain.getLength(),
                         stackNum: 3,
                         swipeEdge: 4.0,
                         maxWidth: MediaQuery.of(context).size.width * 1.0,
                         maxHeight: MediaQuery.of(context).size.width * 1.4,
                         minWidth: MediaQuery.of(context).size.width * 0.5,
                         minHeight: MediaQuery.of(context).size.width * 0.7,
-                        cardBuilder: (context, index) => characterCards[index],
+                        cardBuilder: (context, index) {
+                          return Image.asset(storyBrain.getImg());
+                        },
                         cardController: controller = CardController(),
                         swipeUpdateCallback:
                             (DragUpdateDetails details, Alignment align) {
@@ -122,7 +127,9 @@ class _GamePageState extends State<GamePage> {
                         swipeCompleteCallback:
                             (CardSwipeOrientation orientation, int index) {
                           /// Get orientation & index of swiped card!
-                          print(index);
+//                          print(index);
+                          storyBrain.updateIndex(index + 1);
+
                           if (orientation == CardSwipeOrientation.LEFT) {
                             setState(() {
                               moneyVar++;
@@ -142,7 +149,7 @@ class _GamePageState extends State<GamePage> {
                   ),
                   Expanded(
                     child: Text(
-                      'character name',
+                      storyBrain.getName(),
                       textAlign: TextAlign.center,
                     ),
                   ),

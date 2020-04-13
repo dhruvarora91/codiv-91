@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_tindercard/flutter_tindercard.dart';
 import 'constants.dart';
 
-int moneyVar = 20;
-
 enum dir { left, right }
+int moneyVar = 20;
 
 class GamePage extends StatefulWidget {
   @override
@@ -13,17 +12,17 @@ class GamePage extends StatefulWidget {
 }
 
 class _GamePageState extends State<GamePage> {
-  List<String> cardImages = [
-    'images/characterimg1.png',
-    'images/characterimg2.png',
-    'images/characterimg3.png',
-    'images/characterimg4.png',
-    'images/characterimg5.png',
-    'images/characterimg1.png',
-    'images/characterimg2.png',
-    'images/characterimg3.png',
-    'images/characterimg4.png',
-    'images/characterimg5.png',
+  List<InteractiveCard> characterCards = [
+    InteractiveCard(cardImage: 'images/characterimg1.png'),
+    InteractiveCard(cardImage: 'images/characterimg2.png'),
+    InteractiveCard(cardImage: 'images/characterimg3.png'),
+    InteractiveCard(cardImage: 'images/characterimg4.png'),
+    InteractiveCard(cardImage: 'images/characterimg5.png'),
+    InteractiveCard(cardImage: 'images/characterimg1.png'),
+    InteractiveCard(cardImage: 'images/characterimg2.png'),
+    InteractiveCard(cardImage: 'images/characterimg3.png'),
+    InteractiveCard(cardImage: 'images/characterimg4.png'),
+    InteractiveCard(cardImage: 'images/characterimg5.png'),
   ];
 
   @override
@@ -31,6 +30,7 @@ class _GamePageState extends State<GamePage> {
     final int personVar = 20;
     final int foodVar = 20;
     final int healthVar = 20;
+
     CardController controller; //Use this to trigger swap.
     dir direction;
     AlignmentGeometry a = Alignment.topCenter;
@@ -85,29 +85,14 @@ class _GamePageState extends State<GamePage> {
                     flex: 6,
                     child: TinderSwapCard(
                         orientation: AmassOrientation.BOTTOM,
-                        totalNum: cardImages.length,
+                        totalNum: characterCards.length,
                         stackNum: 3,
                         swipeEdge: 4.0,
                         maxWidth: MediaQuery.of(context).size.width * 1.0,
                         maxHeight: MediaQuery.of(context).size.width * 1.4,
                         minWidth: MediaQuery.of(context).size.width * 0.5,
                         minHeight: MediaQuery.of(context).size.width * 0.7,
-                        cardBuilder: (context, index) => Card(
-                              child: Stack(
-                                children: <Widget>[
-                                  Image.asset('${cardImages[index]}'),
-                                  Container(
-                                      alignment: a,
-                                      child: Text(
-                                        'choice',
-                                        style: TextStyle(
-                                            color: Colors.pink,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 22.0),
-                                      )),
-                                ],
-                              ),
-                            ),
+                        cardBuilder: (context, index) => characterCards[index],
                         cardController: controller = CardController(),
                         swipeUpdateCallback:
                             (DragUpdateDetails details, Alignment align) {
@@ -120,7 +105,7 @@ class _GamePageState extends State<GamePage> {
                               //Card is LEFT swiping
                               print('Going left');
                               choice = 'choice left';
-                              a = Alignment.topRight;
+//                              characterCards[index].updateAxisPosition(i)
 //
 //                              align = Alignment.topRight;
                             } else if (align.x > 0) {
@@ -136,7 +121,7 @@ class _GamePageState extends State<GamePage> {
                         swipeCompleteCallback:
                             (CardSwipeOrientation orientation, int index) {
                           /// Get orientation & index of swiped card!
-
+                          print(index);
                           if (orientation == CardSwipeOrientation.LEFT) {
                             setState(() {
                               moneyVar++;
@@ -173,10 +158,51 @@ class _GamePageState extends State<GamePage> {
   }
 }
 
+//Switch this to stateful widget
+class InteractiveCard extends StatelessWidget {
+  InteractiveCard({
+    @required this.cardImage,
+//    @required this.index,
+  });
+
+  final String cardImage;
+//  final int index;
+  AlignmentGeometry axisPosition;
+
+  void updateAxisPosition(d) {
+    if (d == dir.left) {
+      axisPosition = Alignment.topRight;
+    }
+    if (d == dir.right) {
+      axisPosition = Alignment.topLeft;
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      child: Stack(
+        children: <Widget>[
+          Image.asset(cardImage),
+          Container(
+              alignment: axisPosition,
+              child: Text(
+                'choice',
+                style: TextStyle(
+                    color: Colors.pink,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 22.0),
+              )),
+        ],
+      ),
+    );
+  }
+}
+
 class Factors extends StatelessWidget {
   Factors({@required this.icon, @required this.value});
   final IconData icon;
-  int value;
+  final int value;
 
   @override
   Widget build(BuildContext context) {

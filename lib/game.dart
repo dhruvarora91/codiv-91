@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tindercard/flutter_tindercard.dart';
 import 'constants.dart';
+import 'factors.dart';
 
 enum dir { left, right }
 int moneyVar = 20;
@@ -195,29 +196,6 @@ class InteractiveCard extends StatelessWidget {
               )),
         ],
       ),
-    );
-  }
-}
-
-class Factors extends StatelessWidget {
-  Factors({@required this.icon, @required this.value});
-  final IconData icon;
-  final int value;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        Icon(
-          icon,
-          size: 50.0,
-          color: Colors.grey,
-        ),
-        Text(
-          value.toString(),
-          style: kNumberTextStyle,
-        ),
-      ],
     );
   }
 }

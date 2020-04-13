@@ -6,7 +6,8 @@ import 'factors.dart';
 import 'story_brain.dart';
 
 enum dir { left, right }
-int moneyVar = 20;
+
+int moneyVar, personVar, foodVar, healthVar;
 
 class GamePage extends StatefulWidget {
   @override
@@ -30,11 +31,20 @@ class _GamePageState extends State<GamePage> {
   ];
 
   @override
-  Widget build(BuildContext context) {
-    final int personVar = 20;
-    final int foodVar = 20;
-    final int healthVar = 20;
+  void initState() {
+    super.initState();
+    resetValue();
+  }
 
+  void resetValue() {
+    moneyVar = 20;
+    personVar = 20;
+    foodVar = 20;
+    healthVar = 20;
+  }
+
+  @override
+  Widget build(BuildContext context) {
     CardController controller; //Use this to trigger swap.
     dir direction;
     AlignmentGeometry a = Alignment.topCenter;
@@ -154,14 +164,26 @@ class _GamePageState extends State<GamePage> {
 
                           if (orientation == CardSwipeOrientation.LEFT) {
                             setState(() {
-                              moneyVar++;
+                              moneyVar += storyBrain.updateMoneyLeft();
+                              personVar += storyBrain.updatePersonLeft();
+                              foodVar += storyBrain.updateFoodLeft();
+                              healthVar += storyBrain.updateHealthLeft();
                             });
+                            // setState(() {
+                            //   moneyVar++;
+                            // });
                             print('went left');
                           } else if (orientation ==
                               CardSwipeOrientation.RIGHT) {
                             setState(() {
-                              moneyVar--;
+                              moneyVar += storyBrain.updateMoneyRight();
+                              personVar += storyBrain.updatePersonRight();
+                              foodVar += storyBrain.updateFoodRight();
+                              healthVar += storyBrain.updateHealthRight();
                             });
+//                            setState(() {
+//                              moneyVar--;
+//                            });
                             print('went right');
                           }
                         }),

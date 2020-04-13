@@ -17,7 +17,7 @@ class Factors extends StatelessWidget {
         ),
         Text(
           value.toString(),
-          style: kNumberTextStyle,
+          style: kPointsTextStyle,
         ),
       ],
     );

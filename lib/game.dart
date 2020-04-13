@@ -17,19 +17,6 @@ class GamePage extends StatefulWidget {
 StoryBrain storyBrain = StoryBrain();
 
 class _GamePageState extends State<GamePage> {
-  List<InteractiveCard> characterCards = [
-    InteractiveCard(cardImage: 'images/characterimg1.png'),
-    InteractiveCard(cardImage: 'images/characterimg2.png'),
-    InteractiveCard(cardImage: 'images/characterimg3.png'),
-    InteractiveCard(cardImage: 'images/characterimg4.png'),
-    InteractiveCard(cardImage: 'images/characterimg5.png'),
-    InteractiveCard(cardImage: 'images/characterimg1.png'),
-    InteractiveCard(cardImage: 'images/characterimg2.png'),
-    InteractiveCard(cardImage: 'images/characterimg3.png'),
-    InteractiveCard(cardImage: 'images/characterimg4.png'),
-    InteractiveCard(cardImage: 'images/characterimg5.png'),
-  ];
-
   @override
   void initState() {
     super.initState();
@@ -90,9 +77,15 @@ class _GamePageState extends State<GamePage> {
                 children: <Widget>[
                   Expanded(
                     flex: 2,
-                    child: Text(
-                      storyBrain.getQuestion(),
-                      textAlign: TextAlign.center,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        storyBrain.getQuestion(),
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 20,
+                        ),
+                      ),
                     ),
                   ),
                   Expanded(
@@ -111,22 +104,24 @@ class _GamePageState extends State<GamePage> {
                             children: <Widget>[
                               Image.asset(storyBrain.getImg()),
                               Container(
+                                  padding: EdgeInsets.all(8),
                                   alignment: Alignment.topLeft,
                                   child: Text(
                                     storyBrain.getChoice1(),
                                     style: TextStyle(
-                                        color: Colors.pink,
+                                        color: Colors.red,
                                         fontWeight: FontWeight.bold,
-                                        fontSize: 22.0),
+                                        fontSize: 30.0),
                                   )),
                               Container(
+                                  padding: EdgeInsets.all(8),
                                   alignment: Alignment.topRight,
                                   child: Text(
                                     storyBrain.getChoice2(),
                                     style: TextStyle(
-                                        color: Colors.pink,
+                                        color: Colors.red,
                                         fontWeight: FontWeight.bold,
-                                        fontSize: 22.0),
+                                        fontSize: 30.0),
                                   )),
                             ],
                           );
@@ -195,6 +190,10 @@ class _GamePageState extends State<GamePage> {
                     child: Text(
                       storyBrain.getName(),
                       textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 40,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ),
                 ],
@@ -211,42 +210,3 @@ class _GamePageState extends State<GamePage> {
 }
 
 //Switch this to stateful widget
-class InteractiveCard extends StatelessWidget {
-  InteractiveCard({
-    @required this.cardImage,
-//    @required this.index,
-  });
-
-  final String cardImage;
-//  final int index;
-  AlignmentGeometry axisPosition;
-
-  void updateAxisPosition(d) {
-    if (d == dir.left) {
-      axisPosition = Alignment.topRight;
-    }
-    if (d == dir.right) {
-      axisPosition = Alignment.topLeft;
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      child: Stack(
-        children: <Widget>[
-          Image.asset(cardImage),
-          Container(
-              alignment: axisPosition,
-              child: Text(
-                'choice',
-                style: TextStyle(
-                    color: Colors.pink,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 22.0),
-              )),
-        ],
-      ),
-    );
-  }
-}

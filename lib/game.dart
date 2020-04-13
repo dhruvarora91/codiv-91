@@ -48,8 +48,11 @@ class _GamePageState extends State<GamePage> {
             Expanded(
                 flex: 2,
                 child: Padding(
+
                   padding: const EdgeInsets.only(
                     top: 30.0,
+
+
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -58,14 +61,17 @@ class _GamePageState extends State<GamePage> {
                         icon: Icons.attach_money,
                         value: moneyVar,
                       ),
+
                       Factors(
                         icon: Icons.person_outline,
                         value: personVar,
+
                       ),
                       Factors(
                         icon: Icons.restaurant,
                         value: foodVar,
                       ),
+
                       Factors(
                         icon: Icons.local_hospital,
                         value: healthVar,
@@ -152,6 +158,8 @@ class _GamePageState extends State<GamePage> {
                       storyBrain.getName(),
                       textAlign: TextAlign.center,
                     ),
+
+
                   ),
                 ],
               ),

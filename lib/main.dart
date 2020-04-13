@@ -1,6 +1,11 @@
+import 'package:codiv91/News_Page.dart';
 import 'package:flutter/material.dart';
 import 'game.dart';
 import 'mainPage.dart';
+import 'package:codiv91/News_Article.dart';
+import 'package:codiv91/News_Page.dart';
+import 'Stats_Page.dart';
+import 'package:codiv91/Navigation_Page.dart';
 
 void main() {
   runApp(
@@ -9,11 +14,16 @@ void main() {
         scaffoldBackgroundColor: Colors.black,
         primaryColor: Colors.black,
       ),
-      initialRoute: '/',
-      routes: {
-        '/': (context) => Codiv(),
-        '/first': (context) => GamePage(),
-      },
+      home: Codiv(),
+//      initialRoute: '/fifth',
+//      routes: {
+//        '/': (context) => Codiv(),
+//        '/first': (context) => GamePage(),
+//        '/second': (context) => NewsArticle(),
+//        '/third': (context) => NewsScreen(),
+//        '/fourth': (context) => MainScreen(),
+//        '/fifth': (context) => Navigation(),
+//      },
     ),
   );
 }

@@ -35,16 +35,22 @@ class _GamePageState extends State<GamePage> {
     Navigator.pop(context);
   }
 
-  void showAlert({String msg, String des}) {
+  void showAlert(
+      {String msg, String des, String btnText, AlertType alertType}) {
     Alert(
+      style: AlertStyle(
+        backgroundColor: Colors.white,
+        isCloseButton: false,
+      ),
       context: context,
-      type: AlertType.error,
+      type: alertType,
       title: msg,
       desc: des,
       buttons: [
         DialogButton(
+          color: Colors.teal.shade900,
           child: Text(
-            "WANNA TRY AGAIN",
+            btnText,
             style: TextStyle(color: Colors.white, fontSize: 20),
           ),
           onPressed: () {
@@ -60,19 +66,40 @@ class _GamePageState extends State<GamePage> {
 //|| personVar <= 0 || foodVar <= 0 || healthVar <= 0
   void checkFactors(int index) {
     if (moneyVar <= 0)
-      showAlert(msg: 'You have lost the game', des: 'Economy has crashed');
+      showAlert(
+        msg: 'You have lost the game',
+        des: 'Economy has crashed',
+        btnText: 'Try Again',
+        alertType: AlertType.error,
+      );
     else if (personVar <= 0)
       showAlert(
-          msg: 'You have lost the game',
-          des: 'Public opinion about you has diminished');
+        msg: 'You have lost the game',
+        des: 'Public opinion about you has diminished',
+        btnText: 'Try Again',
+        alertType: AlertType.error,
+      );
     else if (foodVar <= 0)
-      showAlert(msg: 'You have lost the game', des: 'Citizens are starving.');
+      showAlert(
+        msg: 'You have lost the game',
+        des: 'Citizens are starving.',
+        btnText: 'Try Again',
+        alertType: AlertType.error,
+      );
     else if (healthVar <= 0)
       showAlert(
-          msg: 'You have lost the game',
-          des: 'All the citizens have been affected by the virus');
+        msg: 'You have lost the game',
+        des: 'All the citizens have been affected by the virus',
+        btnText: 'Try Again',
+        alertType: AlertType.error,
+      );
     else if (storyBrain.cardsOver(index))
-      showAlert(msg: 'GAME OVER', des: 'YOU HAVE WON');
+      showAlert(
+        msg: 'GAME OVER',
+        des: 'YOU HAVE WON',
+        btnText: 'Play Again',
+        alertType: AlertType.success,
+      );
   }
 
   @override

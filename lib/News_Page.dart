@@ -11,7 +11,7 @@ class NewsScreen extends StatefulWidget {
 class _NewsScreenState extends State<NewsScreen> {
   Future<List> getData() async {
     NetworkHelper covidData = NetworkHelper(
-        'http://newsapi.org/v2/top-headlines?country=in&q=corona&sortBy=publishedAt&apiKey=d9fa391aacfe428e81b8c6002ea8a507');
+        'http://newsapi.org/v2/top-headlines?country=in&q=corona&sortBy=publishedAt&apiKey=fdac345f95d744f790909b3152f1c8dd');
     var covidNews = await covidData.getData();
     var articles = covidNews['articles'];
     print(articles);

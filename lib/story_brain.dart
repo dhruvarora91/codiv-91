@@ -28,7 +28,7 @@ class StoryBrain {
         characterName: 'Stay at Home',
         characterImg: 'images/stayhome.png',
         factorChoice1: [0, 0, 0, 0],
-        factorChoice2: [0, 0, 0, -20]),
+        factorChoice2: [0, 0, 0, 0]),
     Story(
         question:
             'Should we distribute food and other necessities to people that can’t reach their home and are stuck in the lockdown?',

@@ -31,25 +31,48 @@ class _GamePageState extends State<GamePage> {
     healthVar = 20;
   }
 
-  void checkFactors() {
-    if (moneyVar <= 0 || personVar <= 0 || foodVar <= 0 || healthVar <= 0) {
-      Alert(
-        context: context,
-        type: AlertType.error,
-        title: "Sorry you Have Lost ",
-        desc: "one of ",
-        buttons: [
-          DialogButton(
-            child: Text(
-              "COOL",
-              style: TextStyle(color: Colors.white, fontSize: 20),
-            ),
-            onPressed: () => Navigator.pop(context),
-            width: 120,
-          )
-        ],
-      ).show();
-    }
+  void returnToMain() {
+    Navigator.pop(context);
+  }
+
+  void showAlert({String msg, String des}) {
+    Alert(
+      context: context,
+      type: AlertType.error,
+      title: msg,
+      desc: des,
+      buttons: [
+        DialogButton(
+          child: Text(
+            "WANNA TRY AGAIN",
+            style: TextStyle(color: Colors.white, fontSize: 20),
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+            returnToMain();
+          },
+          width: 120,
+        )
+      ],
+    ).show();
+  }
+
+//|| personVar <= 0 || foodVar <= 0 || healthVar <= 0
+  void checkFactors(int index) {
+    if (moneyVar <= 0)
+      showAlert(msg: 'You have lost the game', des: 'Economy has crashed');
+    else if (personVar <= 0)
+      showAlert(
+          msg: 'You have lost the game',
+          des: 'Public opinion about you has diminished');
+    else if (foodVar <= 0)
+      showAlert(msg: 'You have lost the game', des: 'Citizens are starving.');
+    else if (healthVar <= 0)
+      showAlert(
+          msg: 'You have lost the game',
+          des: 'All the citizens have been affected by the virus');
+    else if (storyBrain.cardsOver(index))
+      showAlert(msg: 'GAME OVER', des: 'YOU HAVE WON');
   }
 
   @override
@@ -185,7 +208,7 @@ class _GamePageState extends State<GamePage> {
                               personVar += storyBrain.updatePersonLeft();
                               foodVar += storyBrain.updateFoodLeft();
                               healthVar += storyBrain.updateHealthLeft();
-                              checkFactors();
+                              checkFactors(index);
                             });
                             // setState(() {
                             //   moneyVar++;
@@ -198,7 +221,7 @@ class _GamePageState extends State<GamePage> {
                               personVar += storyBrain.updatePersonRight();
                               foodVar += storyBrain.updateFoodRight();
                               healthVar += storyBrain.updateHealthRight();
-                              checkFactors();
+                              checkFactors(index + 1);
                             });
 //                            setState(() {
 //                              moneyVar--;

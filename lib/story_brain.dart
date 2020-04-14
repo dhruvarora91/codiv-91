@@ -68,6 +68,8 @@ class StoryBrain {
     if (newIndex < getLength()) index = newIndex;
   }
 
+  bool cardsOver(int ind) => (ind + 1 >= getLength());
+
   String getQuestion() => _storyData[index].question;
   String getName() => _storyData[index].characterName;
   String getImg() => _storyData[index].characterImg;
@@ -85,8 +87,4 @@ class StoryBrain {
   int updatePersonRight() => _storyData[index - 1].factorChoice2[1];
   int updateFoodRight() => _storyData[index - 1].factorChoice2[2];
   int updateHealthRight() => _storyData[index - 1].factorChoice2[3];
-
-  bool checkFactors(int m, int p, int r, int h) {
-    return m > 0 && p > 0 && r > 0 && h > 0;
-  }
 }

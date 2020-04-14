@@ -30,7 +30,7 @@ dependencies:
   flutter_share: ^1.0.2+1
   flutter_spinkit: ^4.1.2+1
   google_sign_in: ^4.4.1
-
+  rflutter_alert: ^1.0.3
 
 dev_dependencies:
   flutter_test:

@@ -28,7 +28,7 @@ class StoryBrain {
         characterName: 'Stay at Home',
         characterImg: 'images/stayhome.png',
         factorChoice1: [0, 0, 0, 0],
-        factorChoice2: [0, 0, 0, 0]),
+        factorChoice2: [0, 0, 0, -20]),
     Story(
         question:
             'Should we distribute food and other necessities to people that can’t reach their home and are stuck in the lockdown?',
@@ -85,4 +85,8 @@ class StoryBrain {
   int updatePersonRight() => _storyData[index - 1].factorChoice2[1];
   int updateFoodRight() => _storyData[index - 1].factorChoice2[2];
   int updateHealthRight() => _storyData[index - 1].factorChoice2[3];
+
+  bool checkFactors(int m, int p, int r, int h) {
+    return m > 0 && p > 0 && r > 0 && h > 0;
+  }
 }

@@ -4,6 +4,7 @@ import 'package:flutter_tindercard/flutter_tindercard.dart';
 import 'constants.dart';
 import 'factors.dart';
 import 'story_brain.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 enum dir { left, right }
 
@@ -28,6 +29,27 @@ class _GamePageState extends State<GamePage> {
     personVar = 20;
     foodVar = 20;
     healthVar = 20;
+  }
+
+  void checkFactors() {
+    if (moneyVar <= 0 || personVar <= 0 || foodVar <= 0 || healthVar <= 0) {
+      Alert(
+        context: context,
+        type: AlertType.error,
+        title: "Sorry you Have Lost ",
+        desc: "one of ",
+        buttons: [
+          DialogButton(
+            child: Text(
+              "COOL",
+              style: TextStyle(color: Colors.white, fontSize: 20),
+            ),
+            onPressed: () => Navigator.pop(context),
+            width: 120,
+          )
+        ],
+      ).show();
+    }
   }
 
   @override
@@ -163,6 +185,7 @@ class _GamePageState extends State<GamePage> {
                               personVar += storyBrain.updatePersonLeft();
                               foodVar += storyBrain.updateFoodLeft();
                               healthVar += storyBrain.updateHealthLeft();
+                              checkFactors();
                             });
                             // setState(() {
                             //   moneyVar++;
@@ -175,6 +198,7 @@ class _GamePageState extends State<GamePage> {
                               personVar += storyBrain.updatePersonRight();
                               foodVar += storyBrain.updateFoodRight();
                               healthVar += storyBrain.updateHealthRight();
+                              checkFactors();
                             });
 //                            setState(() {
 //                              moneyVar--;

@@ -13,9 +13,19 @@ Graph Source: https://youtu.be/gxAaO2rsdIs
 
 
 User can click on the play button to get on the game screen where he will be given a card with a question and name title, by swiping left to right the user makes a choice which will affect the 4 factors in the game Economy, Public opinion, Resources, Medical infrastructure.
+
 ![img](https://lh5.googleusercontent.com/HRJ2DYi7iMWySVuXTRe9HE6yqiketwb0zRKLF_2oHibGCj2hL4DGxwUGPyxMq7-aVvW8RJXB7vpnm-YKHxLHdPjBnCAB_bqLlWTfUA8bgH4N1_Wee31hv3vtOFzHLacjJR8daHmC)
-The goal of the game is to sustain as long as possible without any breakdown in any of the above-mentioned factors. This is inspired by games like Lapse, Reigns, Plague Inc. 
+
+
+
+The goal of the game is to sustain as long as possible without any breakdown in any of the above-mentioned factors. This is inspired by games like Lapse, Reigns, Plague Inc.
+
+
+
+
 <img src="https://lh3.googleusercontent.com/OeDEiAfiFUj1G9pWEweio3htJ29YFfJc_-e0PRDTQhY2-QdtnL_GStqQhXPcgDZ0ugUNAelCdmcoTbjugV4kBRx9mBlAuLMbJfFxSBfnq9gq4CoSI0lpEx5JLN5da9Rl5wl5eX6R" alt="img" style="zoom:50%;" />
+
+
 
 The above-mentioned factors will change according to the decision taken in the game. This is just a demonstration in which the factors are currently constant. 
 For eg: One of your lead researchers suggests going with human experimentation to improve your chances to combat the pandemic

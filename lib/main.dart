@@ -5,7 +5,6 @@ import 'mainPage.dart';
 import 'package:codiv91/News_Article.dart';
 import 'package:codiv91/News_Page.dart';
 import 'Stats_Page.dart';
-import 'package:codiv91/Navigation_Page.dart';
 
 void main() {
   runApp(

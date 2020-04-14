@@ -22,6 +22,14 @@ class StoryBrain {
         factorChoice1: [-5, 2, -5, 2],
         factorChoice2: [2, -5, -5, -5]),
     Story(
+        question: '',
+        choice1: '',
+        choice2: '',
+        characterName: 'Stay at Home',
+        characterImg: 'images/stayhome.png',
+        factorChoice1: [0, 0, 0, 0],
+        factorChoice2: [0, 0, 0, 0]),
+    Story(
         question:
             'Should we distribute food and other necessities to people that can’t reach their home and are stuck in the lockdown?',
         choice1: 'Yes',
@@ -39,11 +47,19 @@ class StoryBrain {
         factorChoice1: [-3, 0, 0, 5],
         factorChoice2: [3, 0, 0, -5]),
     Story(
+        question: '',
+        choice1: '',
+        choice2: '',
+        characterName: 'Wash your Hands',
+        characterImg: 'images/wash.png',
+        factorChoice1: [0, 0, 0, 0],
+        factorChoice2: [0, 0, 0, 0]),
+    Story(
         question:
             'One of your lead researchers suggests going with human experimentation to improve your chances to combat the pandemic',
         choice1: 'Yes',
         choice2: 'No',
-        characterName: 'Healthcare',
+        characterName: 'Health Advisor',
         characterImg: 'images/Healthcare 1.png',
         factorChoice1: [0, -5, 0, 5],
         factorChoice2: [-3, 2, 0, -5]),

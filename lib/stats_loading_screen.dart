@@ -33,10 +33,22 @@ class _StatsLoadingScreenState extends State<StatsLoadingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: SpinKitRotatingPlain(
-        color: Colors.white,
-        size: 50.0,
+    return SafeArea(
+      child: Scaffold(
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(
+              'Loading Stats',
+              style: TextStyle(fontSize: 25.0),
+            ),
+            SizedBox(height: 20.0),
+            SpinKitRotatingPlain(
+              color: Colors.white,
+              size: 50.0,
+            ),
+          ],
+        ),
       ),
     );
   }

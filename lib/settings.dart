@@ -2,9 +2,11 @@ import 'package:codiv91/News_Page.dart';
 import 'package:codiv91/Stats_Page.dart';
 import 'package:codiv91/constants.dart';
 import 'package:codiv91/preventive_measures.dart';
+import 'package:codiv91/stats_loading_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'stats_loading_screen.dart';
 
 import 'reusable_card.dart';
 
@@ -124,7 +126,7 @@ class Settings extends StatelessWidget {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => MainScreen()));
+                                builder: (context) => StatsLoadingScreen()));
                       },
                       child: Icon(Icons.format_list_numbered),
                     ),

@@ -2,6 +2,7 @@ import 'package:codiv91/game.dart';
 import 'package:codiv91/settings.dart';
 import 'package:flutter/material.dart';
 import 'bottom_button.dart';
+import 'Stats_Page.dart';
 
 class Codiv extends StatelessWidget {
   @override
@@ -13,9 +14,9 @@ class Codiv extends StatelessWidget {
             child: Center(
               child: FlatButton(
                 onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => Settings()));
-            },
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Settings()));
+                },
                 child: Icon(Icons.settings),
               ),
             ),

@@ -1,7 +1,8 @@
+import 'package:codiv91/Components/reusable_card.dart';
 import 'package:codiv91/constants.dart';
-import 'package:codiv91/reusable_card.dart';
 import 'package:flutter/material.dart';
-import 'reusable_card.dart';
+
+import '../Components/reusable_card.dart';
 
 class Measures extends StatelessWidget {
   @override

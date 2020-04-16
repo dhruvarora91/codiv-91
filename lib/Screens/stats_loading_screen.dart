@@ -1,7 +1,6 @@
-import 'package:codiv91/News_Page.dart';
-import 'package:codiv91/Stats_Page.dart';
+import 'package:codiv91/Screens/Stats_Page.dart';
+import 'package:codiv91/Services/Network_Helper.dart';
 import 'package:flutter/material.dart';
-import 'package:codiv91/Network_Helper.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class StatsLoadingScreen extends StatefulWidget {

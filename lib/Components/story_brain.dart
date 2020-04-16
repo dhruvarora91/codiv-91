@@ -5,6 +5,15 @@ class StoryBrain {
   List<Story> _storyData = [
     Story(
         question:
+            'Putting the country in lockdown will damage the economy, should we still proceed with it?',
+        choice1: 'Yes',
+        choice2: 'No',
+        characterName: 'Economic Advisor',
+        characterImg: 'images/EconomicAdvisor.png',
+        factorChoice1: [-5, 2, -5, 2],
+        factorChoice2: [2, -5, -5, -5]),
+    Story(
+        question:
             'People are not abiding by the rules, can we use force to make them follow?',
         choice1: 'Yes',
         choice2: 'No',
@@ -12,15 +21,6 @@ class StoryBrain {
         characterImg: 'images/General.png',
         factorChoice1: [0, -5, 0, 0],
         factorChoice2: [-5, 2, 0, -5]),
-    Story(
-        question:
-            'Putting the country in lockdown will damage the economy, should we still proceed with it?',
-        choice1: 'Yes',
-        choice2: 'No',
-        characterName: 'Economic Advisor',
-        characterImg: 'images/Economic Advisor.png',
-        factorChoice1: [-5, 2, -5, 2],
-        factorChoice2: [2, -5, -5, -5]),
     Story(
         question: '',
         choice1: '',
@@ -35,7 +35,7 @@ class StoryBrain {
         choice1: 'Yes',
         choice2: 'No',
         characterName: 'Economic Advisor',
-        characterImg: 'images/Economic Advisor.png',
+        characterImg: 'images/EconomicAdvisor.png',
         factorChoice1: [0, 5, -3, 0],
         factorChoice2: [0, -3, 0, 0]),
     Story(
@@ -43,7 +43,7 @@ class StoryBrain {
         choice1: 'Yes',
         choice2: 'No',
         characterName: 'Economic Advisor',
-        characterImg: 'images/Economic Advisor.png',
+        characterImg: 'images/EconomicAdvisor.png',
         factorChoice1: [-3, 0, 0, 5],
         factorChoice2: [3, 0, 0, -5]),
     Story(
@@ -60,7 +60,7 @@ class StoryBrain {
         choice1: 'Yes',
         choice2: 'No',
         characterName: 'Health Advisor',
-        characterImg: 'images/Healthcare 1.png',
+        characterImg: 'images/Healthcare1.png',
         factorChoice1: [0, -5, 0, 5],
         factorChoice2: [-3, 2, 0, -5]),
   ];

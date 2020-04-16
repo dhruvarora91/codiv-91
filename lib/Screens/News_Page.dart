@@ -1,7 +1,8 @@
+import 'package:codiv91/Components/News_Article.dart';
 import 'package:flutter/material.dart';
-import 'Network_Helper.dart';
-import 'package:codiv91/News_Article.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+
+import '../Services/Network_Helper.dart';
 
 class NewsScreen extends StatefulWidget {
   @override

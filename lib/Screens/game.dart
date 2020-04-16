@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tindercard/flutter_tindercard.dart';
-import 'constants.dart';
-import 'factors.dart';
-import 'story_brain.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
+
+import '../Components/factors.dart';
+import '../Components/story_brain.dart';
 
 enum dir { left, right }
 

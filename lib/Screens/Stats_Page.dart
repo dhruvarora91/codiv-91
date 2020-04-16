@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:codiv91/Network_Helper.dart';
-import 'constants.dart';
+
+import '../constants.dart';
 
 class MainScreen extends StatefulWidget {
   MainScreen(this.dataGlobal, this.dataIndia);

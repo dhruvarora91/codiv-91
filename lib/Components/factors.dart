@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'constants.dart';
+
+import '../constants.dart';
 
 class Factors extends StatelessWidget {
   Factors({@required this.icon, @required this.value});

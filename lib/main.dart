@@ -1,10 +1,6 @@
-import 'package:codiv91/News_Page.dart';
 import 'package:flutter/material.dart';
-import 'game.dart';
-import 'mainPage.dart';
-import 'package:codiv91/News_Article.dart';
-import 'package:codiv91/News_Page.dart';
-import 'Stats_Page.dart';
+
+import 'Screens/mainPage.dart';
 
 void main() {
   runApp(

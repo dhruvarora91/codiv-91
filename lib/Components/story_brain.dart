@@ -63,6 +63,23 @@ class StoryBrain {
         characterImg: 'images/Healthcare1.png',
         factorChoice1: [0, -5, 0, 5],
         factorChoice2: [-3, 2, 0, -5]),
+    Story(
+        question: 'Can you grant us permission to hold a religious event?',
+        choice1: 'Yes',
+        choice2: 'No',
+        characterName: 'Religious Leader',
+        characterImg: 'images/Religiousleader2.png',
+        factorChoice1: [0, 0, -3, -7],
+        factorChoice2: [0, 0, 0, 3]),
+    Story(
+        question:
+            'Food resources are at the point of exhaustion, only entomophagy can help in the sustenance of human life. Should we proceed with it?',
+        choice1: 'Yes',
+        choice2: 'No',
+        characterName: 'Intelligence',
+        characterImg: 'images/Intelligence1.png',
+        factorChoice1: [0, -5, 5, 0],
+        factorChoice2: [0, 0, -7, 0]),
   ];
   void updateIndex(int newIndex) {
     if (newIndex < getLength()) index = newIndex;

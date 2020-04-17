@@ -1,4 +1,5 @@
 import 'package:codiv91/Screens/game.dart';
+import 'package:codiv91/Screens/graph_page.dart';
 import 'package:codiv91/Screens/settings.dart';
 import 'package:flutter/material.dart';
 
@@ -25,9 +26,16 @@ class Codiv extends StatelessWidget {
             flex: 5,
             child: Padding(
               padding: const EdgeInsets.all(15.0),
-              child: Image(
-                image: AssetImage("images/graph.gif"),
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => GraphPage()));
+                },
+                child: Image(
+                  image: AssetImage("images/graph.gif"),
+                ),
               ),
+//              child: LineChartSample1(),
             ),
           ),
           Expanded(

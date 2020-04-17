@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:codiv91/Screens/graph.dart';
 import 'Screens/mainPage.dart';
 
 void main() {
@@ -9,6 +9,7 @@ void main() {
         scaffoldBackgroundColor: Colors.black,
         primaryColor: Colors.black,
       ),
+//      home: LineChartSample1(),
       home: Codiv(),
 //      initialRoute: '/fifth',
 //      routes: {

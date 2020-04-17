@@ -1,7 +1,14 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
+int janTotalCases, janTotalRecoveries, janTotalDeaths;
+
 class LineChartSample1 extends StatefulWidget {
+  LineChartSample1(this.graphData);
+  final graphData;
+
+  
+
   @override
   State<StatefulWidget> createState() => LineChartSample1State();
 }
@@ -13,7 +20,13 @@ class LineChartSample1State extends State<LineChartSample1> {
   void initState() {
     super.initState();
     isShowingMainData = true;
+    // updateUI(widget.graphData);
   }
+
+  
+
+
+
 
   @override
   Widget build(BuildContext context) {

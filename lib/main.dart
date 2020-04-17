@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:codiv91/Screens/graph.dart';
 import 'Screens/mainPage.dart';
+import 'Screens/game_loading_screen.dart';
 
 void main() {
   runApp(
@@ -10,7 +11,8 @@ void main() {
         primaryColor: Colors.black,
       ),
 //      home: LineChartSample1(),
-      home: Codiv(),
+      // home: Codiv(),
+      home: GameLoadingScreen(),
 //      initialRoute: '/fifth',
 //      routes: {
 //        '/': (context) => Codiv(),

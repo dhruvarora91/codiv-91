@@ -32,6 +32,7 @@ dependencies:
   google_sign_in: ^4.4.1
   rflutter_alert: ^1.0.3
   fl_chart: ^0.9.0
+  intl: ^0.15.8
 
 dev_dependencies:
   flutter_test:

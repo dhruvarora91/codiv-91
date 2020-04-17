@@ -1,13 +1,15 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
-int janTotalCases, janTotalRecoveries, janTotalDeaths;
+import 'game_loading_screen.dart';
+
+int totalCases, janTotalRecoveries, janTotalDeaths;
+
+GameLoadingScreenData glsd = GameLoadingScreenData();
 
 class LineChartSample1 extends StatefulWidget {
   LineChartSample1(this.graphData);
   final graphData;
-
-  
 
   @override
   State<StatefulWidget> createState() => LineChartSample1State();
@@ -23,86 +25,92 @@ class LineChartSample1State extends State<LineChartSample1> {
     // updateUI(widget.graphData);
   }
 
-  
-
-
-
-
   @override
   Widget build(BuildContext context) {
-    return AspectRatio(
-      aspectRatio: 0.8,
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: const BorderRadius.all(Radius.circular(18)),
-          gradient: LinearGradient(
-            colors: const [
-              Color(0xff2c274c),
-              Color(0xff46426c),
-            ],
-            begin: Alignment.bottomCenter,
-            end: Alignment.topCenter,
-          ),
-        ),
-        child: Stack(
-          children: <Widget>[
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
+    return Column(
+      children: <Widget>[
+        FlatButton(
+            onPressed: () {
+              print(glsd.getList());
+            },
+            child: null),
+        AspectRatio(
+          aspectRatio: 0.8,
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: const BorderRadius.all(Radius.circular(18)),
+              gradient: LinearGradient(
+                colors: const [
+                  Color(0xff2c274c),
+                  Color(0xff46426c),
+                ],
+                begin: Alignment.bottomCenter,
+                end: Alignment.topCenter,
+              ),
+            ),
+            child: Stack(
               children: <Widget>[
-                const SizedBox(
-                  height: 37,
-                ),
-                const Text(
-                  'Unfold Shop 2018',
-                  style: TextStyle(
-                    color: Color(0xff827daa),
-                    fontSize: 16,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-                const SizedBox(
-                  height: 4,
-                ),
-                const Text(
-                  'Monthly Sales',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 32,
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: 2),
-                  textAlign: TextAlign.center,
-                ),
-                const SizedBox(
-                  height: 37,
-                ),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.only(right: 16.0, left: 6.0),
-                    child: LineChart(
-                      isShowingMainData ? sampleData1() : sampleData2(),
-                      swapAnimationDuration: const Duration(milliseconds: 250),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: <Widget>[
+                    const SizedBox(
+                      height: 37,
                     ),
+                    const Text(
+                      'Unfold Shop 2018',
+                      style: TextStyle(
+                        color: Color(0xff827daa),
+                        fontSize: 16,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(
+                      height: 4,
+                    ),
+                    const Text(
+                      'Monthly Sales',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 32,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 2),
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(
+                      height: 37,
+                    ),
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.only(right: 16.0, left: 6.0),
+                        child: LineChart(
+                          isShowingMainData ? sampleData1() : sampleData2(),
+                          swapAnimationDuration:
+                              const Duration(milliseconds: 250),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                  ],
+                ),
+                IconButton(
+                  icon: Icon(
+                    Icons.refresh,
+                    color:
+                        Colors.white.withOpacity(isShowingMainData ? 1.0 : 0.5),
                   ),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
+                  onPressed: () {
+                    setState(() {
+                      isShowingMainData = !isShowingMainData;
+                    });
+                  },
+                )
               ],
             ),
-            IconButton(
-              icon: Icon(
-                Icons.refresh,
-                color: Colors.white.withOpacity(isShowingMainData ? 1.0 : 0.5),
-              ),
-              onPressed: () {
-                setState(() {
-                  isShowingMainData = !isShowingMainData;
-                });
-              },
-            )
-          ],
+          ),
         ),
-      ),
+      ],
     );
   }
 

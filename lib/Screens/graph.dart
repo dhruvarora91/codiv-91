@@ -2,6 +2,7 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
 import 'game_loading_screen.dart';
+import 'package:flutter/cupertino.dart';
 
 int totalCases, totalRecoveries, totalDeaths;
 
@@ -35,15 +36,24 @@ class LineChartSample1State extends State<LineChartSample1> {
     print('Total Deaths data is $totalDeathsData');
   }
 
+  List<String> graphList = [
+    'Total', 'Recovered', 'Deaths', 'All'
+  ];
+
+  List<Widget> getPickerItems() {
+    List<Text> pickerItems = [];
+    for (String graph in graphList) {
+      var newItem = Text(graph);
+      pickerItems.add(newItem);
+    }
+    return pickerItems;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
-        FlatButton(
-            onPressed: () {
-              // print(glsd.getList());
-            },
-            child: null),
         AspectRatio(
           aspectRatio: 0.8,
           child: Container(
@@ -120,6 +130,20 @@ class LineChartSample1State extends State<LineChartSample1> {
             ),
           ),
         ),
+        Container(
+            height: 150.0,
+            alignment: Alignment.center,
+            padding: EdgeInsets.only(bottom: 30.0),
+            color: Colors.lightBlue,
+            child: CupertinoPicker(
+              backgroundColor: Colors.lightBlue,
+              itemExtent: 32.0,
+              onSelectedItemChanged: (selectedIndex) {
+                print(selectedIndex);
+              },
+              children: getPickerItems(),
+            ),
+          ),
       ],
     );
   }

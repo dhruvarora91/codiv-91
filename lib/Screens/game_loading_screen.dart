@@ -9,26 +9,6 @@ List<int> totalData = [];
 
 class GameLoadingScreenData {
   void updateUI(graphData) {
-    // janTotalCases = graphData['timelineitems'][0]['1/31/20']['total_cases'];
-    // janTotalRecoveries = graphData['timelineitems'][0]['1/31/20']['total_recoveries'];
-    // janTotalDeaths = graphData['timelineitems'][0]['1/31/20']['total_deaths'];
-
-    // List totalRecoveries = [];
-    // List totalDeaths = [];
-// print(graphData['timelineitems'][0]['2/01/20']['total_cases']);
-
-//    for (DateTime date1 = DateTime(2020, 2, 01);
-//        date1.isBefore(currentDate);
-//        date1 = date1.add(Duration(days: 1))) {
-//      if (date1.day < 10) {
-//        totalData.add(graphData['timelineitems'][0]
-//            ['${date1.month}/0${date1.day}/20']['total_cases']);
-//
-//      } else {
-//        totalData.add(graphData['timelineitems'][0]
-//            ['${date1.month}/${date1.day}/20']['total_cases']);
-//      }
-//    }
   }
 
   List getList() {

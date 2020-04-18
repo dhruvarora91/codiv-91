@@ -11,8 +11,8 @@ void main() {
         primaryColor: Colors.black,
       ),
 //      home: LineChartSample1(),
-      // home: Codiv(),
-      home: GameLoadingScreen(),
+      home: Codiv(),
+      // home: GameLoadingScreen(),
 //      initialRoute: '/fifth',
 //      routes: {
 //        '/': (context) => Codiv(),

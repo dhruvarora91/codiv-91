@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 
 import 'game_loading_screen.dart';
 
-int totalCases, janTotalRecoveries, janTotalDeaths;
+int totalCases, totalRecoveries, totalDeaths;
 
 GameLoadingScreenData glsd = GameLoadingScreenData();
 
 class LineChartSample1 extends StatefulWidget {
-  LineChartSample1(this.graphData);
-  final graphData;
+  LineChartSample1(this.totalCasesData);
+  final totalCasesData;
 
   @override
   State<StatefulWidget> createState() => LineChartSample1State();
@@ -22,7 +22,11 @@ class LineChartSample1State extends State<LineChartSample1> {
   void initState() {
     super.initState();
     isShowingMainData = true;
-    // updateUI(widget.graphData);
+    updateUI(widget.totalCasesData);
+  }
+
+  void updateUI(totalCasesData) {
+    print('Total Cases data is $totalCasesData');
   }
 
   @override

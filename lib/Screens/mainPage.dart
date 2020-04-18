@@ -1,4 +1,5 @@
 import 'package:codiv91/Screens/game.dart';
+import 'package:codiv91/Screens/graph_loading_screen_new.dart';
 import 'package:codiv91/Screens/graph_page.dart';
 import 'package:codiv91/Screens/settings.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +30,7 @@ class Codiv extends StatelessWidget {
               child: GestureDetector(
                 onTap: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => GraphPage()));
+                      MaterialPageRoute(builder: (context) => GraphLoadingScreen()));
                 },
                 child: Image(
                   image: AssetImage("images/graph.gif"),

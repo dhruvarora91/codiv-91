@@ -1,6 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-
+import 'dart:math';
 import 'game_loading_screen.dart';
 
 int totalCases, totalRecoveries, totalDeaths;
@@ -8,7 +8,8 @@ int totalCases, totalRecoveries, totalDeaths;
 GameLoadingScreenData glsd = GameLoadingScreenData();
 
 class LineChartSample1 extends StatefulWidget {
-  LineChartSample1(this.totalCasesData, this.totalRecoveriesData, this.totalDeathsData);
+  LineChartSample1(
+      this.totalCasesData, this.totalRecoveriesData, this.totalDeathsData);
   final totalCasesData;
   final totalRecoveriesData;
   final totalDeathsData;
@@ -24,7 +25,8 @@ class LineChartSample1State extends State<LineChartSample1> {
   void initState() {
     super.initState();
     isShowingMainData = true;
-    updateUI(widget.totalCasesData, widget.totalRecoveriesData, widget.totalDeathsData);
+    updateUI(widget.totalCasesData, widget.totalRecoveriesData,
+        widget.totalDeathsData);
   }
 
   void updateUI(totalCasesData, totalRecoveriesData, totalDeathsData) {
@@ -32,8 +34,6 @@ class LineChartSample1State extends State<LineChartSample1> {
     print('Total Recoveries data is $totalRecoveriesData');
     print('Total Deaths data is $totalDeathsData');
   }
-
-  
 
   @override
   Widget build(BuildContext context) {
@@ -147,14 +147,6 @@ class LineChartSample1State extends State<LineChartSample1> {
           ),
           margin: 10,
           getTitles: (value) {
-            switch (value.toInt()) {
-              case 2:
-                return 'SEPT';
-              case 7:
-                return 'OCT';
-              case 12:
-                return 'DEC';
-            }
             return '';
           },
         ),
@@ -166,16 +158,6 @@ class LineChartSample1State extends State<LineChartSample1> {
             fontSize: 14,
           ),
           getTitles: (value) {
-            switch (value.toInt()) {
-              case 1:
-                return '1m';
-              case 2:
-                return '2m';
-              case 3:
-                return '3m';
-              case 4:
-                return '5m';
-            }
             return '';
           },
           margin: 8,
@@ -201,24 +183,35 @@ class LineChartSample1State extends State<LineChartSample1> {
         ),
       ),
       minX: 0,
-      maxX: 14,
-      maxY: 15,
+      maxX: widget.totalCasesData.length.toDouble(),
+      maxY: widget.totalCasesData[widget.totalCasesData.length - 1].toDouble(),
       minY: 0,
       lineBarsData: linesBarData1(),
     );
   }
 
   List<LineChartBarData> linesBarData1() {
+    List<FlSpot> list1 = [];
+    List<FlSpot> list2 = [];
+    List<FlSpot> list3 = [];
+
+    for (var i = 0; i < widget.totalCasesData.length; i++) {
+      list1.add(FlSpot(i.toDouble(), widget.totalCasesData[i].toDouble()));
+      list2.add(FlSpot(i.toDouble(), widget.totalDeathsData[i].toDouble()));
+      list3.add(FlSpot(i.toDouble(), widget.totalRecoveriesData[i].toDouble()));
+    }
     final LineChartBarData lineChartBarData1 = LineChartBarData(
-      spots: [
-        FlSpot(1, 5),
-        FlSpot(3, 1.5),
-        FlSpot(5, 1.4),
-        FlSpot(7, 3.4),
-        FlSpot(10, 2),
-        FlSpot(12, 2.2),
-        FlSpot(13, 1.8),
-      ],
+      spots: list1,
+//      [
+//
+////        FlSpot(1, 8),
+////        FlSpot(3, 1.5),
+////        FlSpot(5, 1.4),
+////        FlSpot(7, 3.4),
+////        FlSpot(10, 2),
+////        FlSpot(12, 2.2),
+////        FlSpot(13, 1.8),
+//      ],
       isCurved: true,
       colors: [
         const Color(0xff4af699),
@@ -233,14 +226,15 @@ class LineChartSample1State extends State<LineChartSample1> {
       ),
     );
     final LineChartBarData lineChartBarData2 = LineChartBarData(
-      spots: [
-        FlSpot(1, 1),
-        FlSpot(3, 2.8),
-        FlSpot(7, 1.2),
-        FlSpot(10, 2.8),
-        FlSpot(12, 2.6),
-        FlSpot(13, 3.9),
-      ],
+      spots: list2,
+//      [
+//        FlSpot(1, 1),
+//        FlSpot(3, 2.8),
+//        FlSpot(7, 1.2),
+//        FlSpot(10, 2.8),
+//        FlSpot(12, 2.6),
+//        FlSpot(13, 3.9),
+//      ],
       isCurved: true,
       colors: [
         const Color(0xffaa4cfc),
@@ -255,13 +249,14 @@ class LineChartSample1State extends State<LineChartSample1> {
       ]),
     );
     final LineChartBarData lineChartBarData3 = LineChartBarData(
-      spots: [
-        FlSpot(1, 2.8),
-        FlSpot(3, 1.9),
-        FlSpot(6, 3),
-        FlSpot(10, 1.3),
-        FlSpot(13, 2.5),
-      ],
+      spots: list3,
+//      [
+//        FlSpot(1, 2.8),
+//        FlSpot(3, 1.9),
+//        FlSpot(6, 3),
+//        FlSpot(10, 1.3),
+//        FlSpot(13, 2.5),
+//      ],
       isCurved: true,
       colors: const [
         Color(0xff27b6fc),
@@ -356,8 +351,8 @@ class LineChartSample1State extends State<LineChartSample1> {
             ),
           )),
       minX: 0,
-      maxX: 14,
-      maxY: 6,
+      maxX: widget.totalRecoveriesData.length,
+      maxY: widget.totalRecoveriesData.reduce(max),
       minY: 0,
       lineBarsData: linesBarData2(),
     );

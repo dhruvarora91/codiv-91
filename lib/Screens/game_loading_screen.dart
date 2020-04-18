@@ -8,8 +8,7 @@ DateTime currentDate = DateTime.now().add(Duration(days: -2));
 List<int> totalData = [];
 
 class GameLoadingScreenData {
-  void updateUI(graphData) {
-  }
+  void updateUI(graphData) {}
 
   List getList() {
     return totalData;
@@ -33,10 +32,10 @@ class _GameLoadingScreenState extends State<GameLoadingScreen> {
         date1 = date1.add(Duration(days: 1))) {
       print('andar');
       if (date1.day < 10) {
-        await totalData.add(graphData['timelineitems'][0]
+        totalData.add(graphData['timelineitems'][0]
             ['${date1.month}/0${date1.day}/20']['total_cases']);
       } else {
-        await totalData.add(graphData['timelineitems'][0]
+        totalData.add(graphData['timelineitems'][0]
             ['${date1.month}/${date1.day}/20']['total_cases']);
       }
     }

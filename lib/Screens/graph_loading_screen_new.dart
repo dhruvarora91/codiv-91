@@ -22,25 +22,10 @@ class _GraphLoadingScreenState extends State<GraphLoadingScreen> {
     List<int> totalCases = [];
     List<int> totalRecovered = [];
     List<int> totalDeaths = [];
-
+    print('Current Date $currentDate');
     NetworkHelper networkHelper = NetworkHelper(
-        'https://api.covid19api.com/country/india?from=2020-02-01T00:00:00Z&to=2020-04-16T00:00:00Z');
+        'https://api.covid19api.com/country/india?from=2020-02-01T00:00:00Z&to=${currentDate.toIso8601String()}');
     var graphData = await networkHelper.getData();
-    // for (DateTime date1 = DateTime(2020, 2, 01); date1.isBefore(currentDate); date1 = date1.add(Duration(days: 1))) {
-    //   // print('andar');
-    //   if (date1.day < 10) {
-    //     totalCases.add(graphData['timelineitems'][0]['${date1.month}/0${date1.day}/20']['total_cases']);
-    //     totalRecovered.add(graphData['timelineitems'][0]['${date1.month}/0${date1.day}/20']['total_recoveries']);
-    //     totalDeaths.add(graphData['timelineitems'][0]['${date1.month}/0${date1.day}/20']['total_deaths']);
-    //   }
-    //   else {
-    //     totalCases.add(graphData['timelineitems'][0]['${date1.month}/${date1.day}/20']['total_cases']);
-    //     totalRecovered.add(graphData['timelineitems'][0]['${date1.month}/${date1.day}/20']['total_recoveries']);
-    //     totalDeaths.add(graphData['timelineitems'][0]['${date1.month}/${date1.day}/20']['total_deaths']);
-    //   }
-    // }
-    // print(totalData);
-    // print('bahar');
 
     for (var i = 0; i < graphData.length; i++) {
       totalCases.add(graphData[i]['Confirmed']);
@@ -61,7 +46,10 @@ class _GraphLoadingScreenState extends State<GraphLoadingScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: SpinKitFadingCube(color: Colors.white, size: 50.0,),
+      child: SpinKitFadingCube(
+        color: Colors.white,
+        size: 50.0,
+      ),
     );
   }
 }

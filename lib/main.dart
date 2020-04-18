@@ -1,5 +1,5 @@
+import 'package:codiv91/Screens/game_loading_screen.dart';
 import 'package:flutter/material.dart';
-
 import 'Screens/mainPage.dart';
 
 void main() {
@@ -10,15 +10,7 @@ void main() {
         primaryColor: Colors.black,
       ),
       home: Codiv(),
-//      initialRoute: '/fifth',
-//      routes: {
-//        '/': (context) => Codiv(),
-//        '/first': (context) => GamePage(),
-//        '/second': (context) => NewsArticle(),
-//        '/third': (context) => NewsScreen(),
-//        '/fourth': (context) => MainScreen(),
-//        '/fifth': (context) => Navigation(),
-//      },
+      // home: GameLoadingScreen(),
     ),
   );
 }

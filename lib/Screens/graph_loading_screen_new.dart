@@ -23,23 +23,33 @@ class _GraphLoadingScreenState extends State<GraphLoadingScreen> {
 
   void getData() async {
     NetworkHelper networkHelper = NetworkHelper(
-        'https://api.thevirustracker.com/free-api?countryTimeline=IN');
+        'https://api.covid19api.com/country/india?from=2020-02-01T00:00:00Z&to=2020-04-16T00:00:00Z');
     var graphData = await networkHelper.getData();
-    for (DateTime date1 = DateTime(2020, 2, 01); date1.isBefore(currentDate); date1 = date1.add(Duration(days: 1))) {
-      // print('andar');
-      if (date1.day < 10) {
-        totalCases.add(graphData['timelineitems'][0]['${date1.month}/0${date1.day}/20']['total_cases']);
-        totalRecovered.add(graphData['timelineitems'][0]['${date1.month}/0${date1.day}/20']['total_recoveries']);
-        totalDeaths.add(graphData['timelineitems'][0]['${date1.month}/0${date1.day}/20']['total_deaths']);
-      } 
-      else {
-        totalCases.add(graphData['timelineitems'][0]['${date1.month}/${date1.day}/20']['total_cases']);
-        totalRecovered.add(graphData['timelineitems'][0]['${date1.month}/${date1.day}/20']['total_recoveries']);
-        totalDeaths.add(graphData['timelineitems'][0]['${date1.month}/${date1.day}/20']['total_deaths']);
-      }
-    }
+    // for (DateTime date1 = DateTime(2020, 2, 01); date1.isBefore(currentDate); date1 = date1.add(Duration(days: 1))) {
+    //   // print('andar');
+    //   if (date1.day < 10) {
+    //     totalCases.add(graphData['timelineitems'][0]['${date1.month}/0${date1.day}/20']['total_cases']);
+    //     totalRecovered.add(graphData['timelineitems'][0]['${date1.month}/0${date1.day}/20']['total_recoveries']);
+    //     totalDeaths.add(graphData['timelineitems'][0]['${date1.month}/0${date1.day}/20']['total_deaths']);
+    //   } 
+    //   else {
+    //     totalCases.add(graphData['timelineitems'][0]['${date1.month}/${date1.day}/20']['total_cases']);
+    //     totalRecovered.add(graphData['timelineitems'][0]['${date1.month}/${date1.day}/20']['total_recoveries']);
+    //     totalDeaths.add(graphData['timelineitems'][0]['${date1.month}/${date1.day}/20']['total_deaths']);
+    //   }
+    // }
     // print(totalData);
     // print('bahar');
+
+    for(var i = 0 ; i < graphData.length ; i++) {
+      totalCases.add(graphData[i]['Confirmed']);
+      totalRecovered.add(graphData[i]['Recovered']);
+      totalDeaths.add(graphData[i]['Deaths']);
+    }
+    print(totalCases);
+    print(totalRecovered);
+    print(totalDeaths);
+
     Navigator.push(context, MaterialPageRoute(builder: (context) => GraphPage(totalCases, totalRecovered, totalDeaths)));
 
   }

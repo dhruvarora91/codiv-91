@@ -2,6 +2,7 @@ import 'package:codiv91/Screens/graph_page.dart';
 import 'package:codiv91/Screens/mainPage.dart';
 import 'package:codiv91/Services/Network_Helper.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 DateTime currentDate = DateTime.now().add(Duration(days: -2));
 
@@ -60,7 +61,7 @@ class _GraphLoadingScreenState extends State<GraphLoadingScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Text('Loading'),
+      child: SpinKitFadingCube(color: Colors.white, size: 50.0,),
     );
   }
 }

@@ -8,6 +8,13 @@ int totalCases, totalRecoveries, totalDeaths;
 
 // GameLoadingScreenData glsd = GameLoadingScreenData();
 
+enum graphData { TotalCases, RecoveredCases, Deaths, All }
+graphData GD;
+
+List<FlSpot> totalCasesList = [];
+List<FlSpot> totalDeathsList = [];
+List<FlSpot> totalRecoveryList = [];
+
 class LineChartSample1 extends StatefulWidget {
   LineChartSample1(
       this.totalCasesData, this.totalRecoveriesData, this.totalDeathsData);
@@ -20,25 +27,31 @@ class LineChartSample1 extends StatefulWidget {
 }
 
 class LineChartSample1State extends State<LineChartSample1> {
-  bool isShowingMainData;
-
   @override
   void initState() {
     super.initState();
-    isShowingMainData = true;
+    GD = graphData.TotalCases;
+
     updateUI(widget.totalCasesData, widget.totalRecoveriesData,
         widget.totalDeathsData);
   }
 
   void updateUI(totalCasesData, totalRecoveriesData, totalDeathsData) {
-    print('Total Cases data is $totalCasesData');
-    print('Total Recoveries data is $totalRecoveriesData');
-    print('Total Deaths data is $totalDeathsData');
+    totalCasesList = [];
+    totalDeathsList = [];
+    totalRecoveryList = [];
+
+    for (var i = 0; i < widget.totalCasesData.length; i++) {
+      totalCasesList
+          .add(FlSpot(i.toDouble(), widget.totalCasesData[i].toDouble()));
+      totalDeathsList
+          .add(FlSpot(i.toDouble(), widget.totalDeathsData[i].toDouble()));
+      totalRecoveryList
+          .add(FlSpot(i.toDouble(), widget.totalRecoveriesData[i].toDouble()));
+    }
   }
 
-  List<String> graphList = [
-    'Total', 'Recovered', 'Deaths', 'All'
-  ];
+  List<String> graphList = ['Total Cases', 'Recovered Cases', 'Deaths', 'All'];
 
   List<Widget> getPickerItems() {
     List<Text> pickerItems = [];
@@ -51,6 +64,19 @@ class LineChartSample1State extends State<LineChartSample1> {
 
   @override
   Widget build(BuildContext context) {
+    LineChartData setData(graphData GD) {
+      switch (GD) {
+        case graphData.All:
+          return All();
+        case graphData.TotalCases:
+          return TotalCases();
+        case graphData.Deaths:
+          return Deaths();
+        case graphData.RecoveredCases:
+          return RecoveredCases();
+      }
+    }
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
@@ -103,7 +129,7 @@ class LineChartSample1State extends State<LineChartSample1> {
                       child: Padding(
                         padding: const EdgeInsets.only(right: 16.0, left: 6.0),
                         child: LineChart(
-                          isShowingMainData ? sampleData1() : sampleData2(),
+                          setData(GD),
                           swapAnimationDuration:
                               const Duration(milliseconds: 250),
                         ),
@@ -114,41 +140,57 @@ class LineChartSample1State extends State<LineChartSample1> {
                     ),
                   ],
                 ),
-                IconButton(
-                  icon: Icon(
-                    Icons.refresh,
-                    color:
-                        Colors.white.withOpacity(isShowingMainData ? 1.0 : 0.5),
-                  ),
-                  onPressed: () {
-                    setState(() {
-                      isShowingMainData = !isShowingMainData;
-                    });
-                  },
-                )
+//                IconButton(
+//                  icon: Icon(
+//                    Icons.refresh,
+//                    color:
+//                        Colors.white.withOpacity(isShowingMainData ? 1.0 : 0.5),
+//                  ),
+//                  onPressed: () {
+//                    setState(() {
+//                      isShowingMainData = !isShowingMainData;
+//                    });
+//                  },
+//                )
               ],
             ),
           ),
         ),
         Container(
-            height: 150.0,
-            alignment: Alignment.center,
-            padding: EdgeInsets.only(bottom: 30.0),
-            color: Colors.lightBlue,
-            child: CupertinoPicker(
-              backgroundColor: Colors.lightBlue,
-              itemExtent: 32.0,
-              onSelectedItemChanged: (selectedIndex) {
-                print(selectedIndex);
-              },
-              children: getPickerItems(),
-            ),
+          height: 150.0,
+          alignment: Alignment.center,
+          padding: EdgeInsets.only(bottom: 30.0),
+          color: Colors.lightBlue,
+          child: CupertinoPicker(
+            backgroundColor: Colors.lightBlue,
+            itemExtent: 32.0,
+            onSelectedItemChanged: (selectedIndex) {
+              print(selectedIndex);
+              setState(() {
+                switch (selectedIndex) {
+                  case 1:
+                    GD = graphData.TotalCases;
+                    break;
+                  case 2:
+                    GD = graphData.RecoveredCases;
+                    break;
+                  case 3:
+                    GD = graphData.Deaths;
+                    break;
+                  case 4:
+                    GD = graphData.All;
+                    break;
+                }
+              });
+            },
+            children: getPickerItems(),
           ),
+        ),
       ],
     );
   }
 
-  LineChartData sampleData1() {
+  LineChartData All() {
     return LineChartData(
       lineTouchData: LineTouchData(
         touchTooltipData: LineTouchTooltipData(
@@ -210,22 +252,13 @@ class LineChartSample1State extends State<LineChartSample1> {
       maxX: widget.totalCasesData.length.toDouble(),
       maxY: widget.totalCasesData[widget.totalCasesData.length - 1].toDouble(),
       minY: 0,
-      lineBarsData: linesBarData1(),
+      lineBarsData: AllData(),
     );
   }
 
-  List<LineChartBarData> linesBarData1() {
-    List<FlSpot> list1 = [];
-    List<FlSpot> list2 = [];
-    List<FlSpot> list3 = [];
-
-    for (var i = 0; i < widget.totalCasesData.length; i++) {
-      list1.add(FlSpot(i.toDouble(), widget.totalCasesData[i].toDouble()));
-      list2.add(FlSpot(i.toDouble(), widget.totalDeathsData[i].toDouble()));
-      list3.add(FlSpot(i.toDouble(), widget.totalRecoveriesData[i].toDouble()));
-    }
+  List<LineChartBarData> AllData() {
     final LineChartBarData lineChartBarData1 = LineChartBarData(
-      spots: list1,
+      spots: totalCasesList,
 //      [
 //
 ////        FlSpot(1, 8),
@@ -250,7 +283,7 @@ class LineChartSample1State extends State<LineChartSample1> {
       ),
     );
     final LineChartBarData lineChartBarData2 = LineChartBarData(
-      spots: list2,
+      spots: totalDeathsList,
 //      [
 //        FlSpot(1, 1),
 //        FlSpot(3, 2.8),
@@ -273,7 +306,7 @@ class LineChartSample1State extends State<LineChartSample1> {
       ]),
     );
     final LineChartBarData lineChartBarData3 = LineChartBarData(
-      spots: list3,
+      spots: totalRecoveryList,
 //      [
 //        FlSpot(1, 2.8),
 //        FlSpot(3, 1.9),
@@ -301,10 +334,14 @@ class LineChartSample1State extends State<LineChartSample1> {
     ];
   }
 
-  LineChartData sampleData2() {
+  LineChartData TotalCases() {
     return LineChartData(
       lineTouchData: LineTouchData(
-        enabled: false,
+        touchTooltipData: LineTouchTooltipData(
+          tooltipBgColor: Colors.blueGrey.withOpacity(0.8),
+        ),
+        touchCallback: (LineTouchResponse touchResponse) {},
+        handleBuiltInTouches: true,
       ),
       gridData: FlGridData(
         show: false,
@@ -320,14 +357,6 @@ class LineChartSample1State extends State<LineChartSample1> {
           ),
           margin: 10,
           getTitles: (value) {
-            switch (value.toInt()) {
-              case 2:
-                return 'SEPT';
-              case 7:
-                return 'OCT';
-              case 12:
-                return 'DEC';
-            }
             return '';
           },
         ),
@@ -339,18 +368,6 @@ class LineChartSample1State extends State<LineChartSample1> {
             fontSize: 14,
           ),
           getTitles: (value) {
-            switch (value.toInt()) {
-              case 1:
-                return '1m';
-              case 2:
-                return '2m';
-              case 3:
-                return '3m';
-              case 4:
-                return '5m';
-              case 5:
-                return '6m';
-            }
             return '';
           },
           margin: 8,
@@ -358,100 +375,252 @@ class LineChartSample1State extends State<LineChartSample1> {
         ),
       ),
       borderData: FlBorderData(
-          show: true,
-          border: const Border(
-            bottom: BorderSide(
-              color: Color(0xff4e4965),
-              width: 4,
-            ),
-            left: BorderSide(
-              color: Colors.transparent,
-            ),
-            right: BorderSide(
-              color: Colors.transparent,
-            ),
-            top: BorderSide(
-              color: Colors.transparent,
-            ),
-          )),
+        show: true,
+        border: const Border(
+          bottom: BorderSide(
+            color: Color(0xff4e4965),
+            width: 4,
+          ),
+          left: BorderSide(
+            color: Colors.transparent,
+          ),
+          right: BorderSide(
+            color: Colors.transparent,
+          ),
+          top: BorderSide(
+            color: Colors.transparent,
+          ),
+        ),
+      ),
       minX: 0,
-      maxX: widget.totalRecoveriesData.length,
-      maxY: widget.totalRecoveriesData.reduce(max),
+      maxX: widget.totalCasesData.length.toDouble(),
+      maxY: widget.totalCasesData[widget.totalCasesData.length - 1].toDouble(),
       minY: 0,
-      lineBarsData: linesBarData2(),
+      lineBarsData: TotalCasesData(),
     );
   }
 
-  List<LineChartBarData> linesBarData2() {
+  List<LineChartBarData> TotalCasesData() {
+    final LineChartBarData lineChartBarData1 = LineChartBarData(
+      spots: totalCasesList,
+//      [
+//
+////        FlSpot(1, 8),
+////        FlSpot(3, 1.5),
+////        FlSpot(5, 1.4),
+////        FlSpot(7, 3.4),
+////        FlSpot(10, 2),
+////        FlSpot(12, 2.2),
+////        FlSpot(13, 1.8),
+//      ],
+      isCurved: true,
+      colors: [
+        const Color(0xff4af699),
+      ],
+      barWidth: 8,
+      isStrokeCapRound: true,
+      dotData: FlDotData(
+        show: false,
+      ),
+      belowBarData: BarAreaData(
+        show: false,
+      ),
+    );
+
     return [
-      LineChartBarData(
-        spots: [
-          FlSpot(1, 5),
-          FlSpot(3, 4),
-          FlSpot(5, 1.8),
-          FlSpot(7, 5),
-          FlSpot(10, 2),
-          FlSpot(12, 2.2),
-          FlSpot(13, 1.8),
-        ],
-        isCurved: true,
-        curveSmoothness: 0,
-        colors: const [
-          Color(0x444af699),
-        ],
-        barWidth: 4,
-        isStrokeCapRound: true,
-        dotData: FlDotData(
-          show: false,
+      lineChartBarData1,
+    ];
+  }
+
+  LineChartData Deaths() {
+    return LineChartData(
+      lineTouchData: LineTouchData(
+        touchTooltipData: LineTouchTooltipData(
+          tooltipBgColor: Colors.blueGrey.withOpacity(0.8),
         ),
-        belowBarData: BarAreaData(
-          show: false,
+        touchCallback: (LineTouchResponse touchResponse) {},
+        handleBuiltInTouches: true,
+      ),
+      gridData: FlGridData(
+        show: false,
+      ),
+      titlesData: FlTitlesData(
+        bottomTitles: SideTitles(
+          showTitles: true,
+          reservedSize: 22,
+          textStyle: const TextStyle(
+            color: Color(0xff72719b),
+            fontWeight: FontWeight.bold,
+            fontSize: 16,
+          ),
+          margin: 10,
+          getTitles: (value) {
+            return '';
+          },
+        ),
+        leftTitles: SideTitles(
+          showTitles: true,
+          textStyle: const TextStyle(
+            color: Color(0xff75729e),
+            fontWeight: FontWeight.bold,
+            fontSize: 14,
+          ),
+          getTitles: (value) {
+            return '';
+          },
+          margin: 8,
+          reservedSize: 30,
         ),
       ),
-      LineChartBarData(
-        spots: [
-          FlSpot(1, 1),
-          FlSpot(3, 2.8),
-          FlSpot(7, 1.2),
-          FlSpot(10, 2.8),
-          FlSpot(12, 2.6),
-          FlSpot(13, 3.9),
-        ],
-        isCurved: true,
-        colors: const [
-          Color(0x99aa4cfc),
-        ],
-        barWidth: 4,
-        isStrokeCapRound: true,
-        dotData: FlDotData(
-          show: false,
-        ),
-        belowBarData: BarAreaData(show: true, colors: [
-          const Color(0x33aa4cfc),
-        ]),
-      ),
-      LineChartBarData(
-        spots: [
-          FlSpot(1, 3.8),
-          FlSpot(3, 1.9),
-          FlSpot(6, 5),
-          FlSpot(10, 3.3),
-          FlSpot(13, 4.5),
-        ],
-        isCurved: true,
-        curveSmoothness: 0,
-        colors: const [
-          Color(0x4427b6fc),
-        ],
-        barWidth: 2,
-        isStrokeCapRound: true,
-        dotData: FlDotData(
-          show: true,
-        ),
-        belowBarData: BarAreaData(
-          show: false,
+      borderData: FlBorderData(
+        show: true,
+        border: const Border(
+          bottom: BorderSide(
+            color: Color(0xff4e4965),
+            width: 4,
+          ),
+          left: BorderSide(
+            color: Colors.transparent,
+          ),
+          right: BorderSide(
+            color: Colors.transparent,
+          ),
+          top: BorderSide(
+            color: Colors.transparent,
+          ),
         ),
       ),
+      minX: 0,
+      maxX: widget.totalDeathsData.length.toDouble(),
+      maxY:
+          widget.totalDeathsData[widget.totalDeathsData.length - 1].toDouble(),
+      minY: 0,
+      lineBarsData: DeathsData(),
+    );
+  }
+
+  List<LineChartBarData> DeathsData() {
+    final LineChartBarData lineChartBarData2 = LineChartBarData(
+      spots: totalDeathsList,
+//      [
+//        FlSpot(1, 1),
+//        FlSpot(3, 2.8),
+//        FlSpot(7, 1.2),
+//        FlSpot(10, 2.8),
+//        FlSpot(12, 2.6),
+//        FlSpot(13, 3.9),
+//      ],
+      isCurved: true,
+      colors: [
+        const Color(0xffaa4cfc),
+      ],
+      barWidth: 8,
+      isStrokeCapRound: true,
+      dotData: FlDotData(
+        show: false,
+      ),
+      belowBarData: BarAreaData(show: false, colors: [
+        const Color(0x00aa4cfc),
+      ]),
+    );
+
+    return [
+      lineChartBarData2,
+    ];
+  }
+
+  LineChartData RecoveredCases() {
+    return LineChartData(
+      lineTouchData: LineTouchData(
+        touchTooltipData: LineTouchTooltipData(
+          tooltipBgColor: Colors.blueGrey.withOpacity(0.8),
+        ),
+        touchCallback: (LineTouchResponse touchResponse) {},
+        handleBuiltInTouches: true,
+      ),
+      gridData: FlGridData(
+        show: false,
+      ),
+      titlesData: FlTitlesData(
+        bottomTitles: SideTitles(
+          showTitles: true,
+          reservedSize: 22,
+          textStyle: const TextStyle(
+            color: Color(0xff72719b),
+            fontWeight: FontWeight.bold,
+            fontSize: 16,
+          ),
+          margin: 10,
+          getTitles: (value) {
+            return '';
+          },
+        ),
+        leftTitles: SideTitles(
+          showTitles: true,
+          textStyle: const TextStyle(
+            color: Color(0xff75729e),
+            fontWeight: FontWeight.bold,
+            fontSize: 14,
+          ),
+          getTitles: (value) {
+            return '';
+          },
+          margin: 8,
+          reservedSize: 30,
+        ),
+      ),
+      borderData: FlBorderData(
+        show: true,
+        border: const Border(
+          bottom: BorderSide(
+            color: Color(0xff4e4965),
+            width: 4,
+          ),
+          left: BorderSide(
+            color: Colors.transparent,
+          ),
+          right: BorderSide(
+            color: Colors.transparent,
+          ),
+          top: BorderSide(
+            color: Colors.transparent,
+          ),
+        ),
+      ),
+      minX: 0,
+      maxX: widget.totalRecoveriesData.length.toDouble(),
+      maxY: widget.totalRecoveriesData[widget.totalCasesData.length - 1]
+          .toDouble(),
+      minY: 0,
+      lineBarsData: RecoveredCasesData(),
+    );
+  }
+
+  List<LineChartBarData> RecoveredCasesData() {
+    final LineChartBarData lineChartBarData3 = LineChartBarData(
+      spots: totalRecoveryList,
+//      [
+//        FlSpot(1, 2.8),
+//        FlSpot(3, 1.9),
+//        FlSpot(6, 3),
+//        FlSpot(10, 1.3),
+//        FlSpot(13, 2.5),
+//      ],
+      isCurved: true,
+      colors: const [
+        Color(0xff27b6fc),
+      ],
+      barWidth: 8,
+      isStrokeCapRound: true,
+      dotData: FlDotData(
+        show: false,
+      ),
+      belowBarData: BarAreaData(
+        show: false,
+      ),
+    );
+    return [
+      lineChartBarData3,
     ];
   }
 }

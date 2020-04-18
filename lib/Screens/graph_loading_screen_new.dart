@@ -4,9 +4,6 @@ import 'package:codiv91/Services/Network_Helper.dart';
 import 'package:flutter/material.dart';
 
 DateTime currentDate = DateTime.now().add(Duration(days: -2));
-List<int> totalCases = [];
-List<int> totalRecovered = [];
-List<int> totalDeaths = [];
 
 class GraphLoadingScreen extends StatefulWidget {
   @override
@@ -14,7 +11,6 @@ class GraphLoadingScreen extends StatefulWidget {
 }
 
 class _GraphLoadingScreenState extends State<GraphLoadingScreen> {
-
   @override
   void initState() {
     super.initState();
@@ -22,6 +18,10 @@ class _GraphLoadingScreenState extends State<GraphLoadingScreen> {
   }
 
   void getData() async {
+    List<int> totalCases = [];
+    List<int> totalRecovered = [];
+    List<int> totalDeaths = [];
+
     NetworkHelper networkHelper = NetworkHelper(
         'https://api.covid19api.com/country/india?from=2020-02-01T00:00:00Z&to=2020-04-16T00:00:00Z');
     var graphData = await networkHelper.getData();
@@ -31,7 +31,7 @@ class _GraphLoadingScreenState extends State<GraphLoadingScreen> {
     //     totalCases.add(graphData['timelineitems'][0]['${date1.month}/0${date1.day}/20']['total_cases']);
     //     totalRecovered.add(graphData['timelineitems'][0]['${date1.month}/0${date1.day}/20']['total_recoveries']);
     //     totalDeaths.add(graphData['timelineitems'][0]['${date1.month}/0${date1.day}/20']['total_deaths']);
-    //   } 
+    //   }
     //   else {
     //     totalCases.add(graphData['timelineitems'][0]['${date1.month}/${date1.day}/20']['total_cases']);
     //     totalRecovered.add(graphData['timelineitems'][0]['${date1.month}/${date1.day}/20']['total_recoveries']);
@@ -41,7 +41,7 @@ class _GraphLoadingScreenState extends State<GraphLoadingScreen> {
     // print(totalData);
     // print('bahar');
 
-    for(var i = 0 ; i < graphData.length ; i++) {
+    for (var i = 0; i < graphData.length; i++) {
       totalCases.add(graphData[i]['Confirmed']);
       totalRecovered.add(graphData[i]['Recovered']);
       totalDeaths.add(graphData[i]['Deaths']);
@@ -50,8 +50,11 @@ class _GraphLoadingScreenState extends State<GraphLoadingScreen> {
     print(totalRecovered);
     print(totalDeaths);
 
-    Navigator.push(context, MaterialPageRoute(builder: (context) => GraphPage(totalCases, totalRecovered, totalDeaths)));
-
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) =>
+                GraphPage(totalCases, totalRecovered, totalDeaths)));
   }
 
   @override

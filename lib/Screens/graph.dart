@@ -8,8 +8,10 @@ int totalCases, totalRecoveries, totalDeaths;
 GameLoadingScreenData glsd = GameLoadingScreenData();
 
 class LineChartSample1 extends StatefulWidget {
-  LineChartSample1(this.totalCasesData);
+  LineChartSample1(this.totalCasesData, this.totalRecoveriesData, this.totalDeathsData);
   final totalCasesData;
+  final totalRecoveriesData;
+  final totalDeathsData;
 
   @override
   State<StatefulWidget> createState() => LineChartSample1State();
@@ -22,12 +24,16 @@ class LineChartSample1State extends State<LineChartSample1> {
   void initState() {
     super.initState();
     isShowingMainData = true;
-    updateUI(widget.totalCasesData);
+    updateUI(widget.totalCasesData, widget.totalRecoveriesData, widget.totalDeathsData);
   }
 
-  void updateUI(totalCasesData) {
+  void updateUI(totalCasesData, totalRecoveriesData, totalDeathsData) {
     print('Total Cases data is $totalCasesData');
+    print('Total Recoveries data is $totalRecoveriesData');
+    print('Total Deaths data is $totalDeathsData');
   }
+
+  
 
   @override
   Widget build(BuildContext context) {

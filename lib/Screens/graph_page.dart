@@ -4,8 +4,10 @@ import 'graph.dart';
 
 
 class GraphPage extends StatefulWidget {
-  GraphPage(this.totalCasesData);
+  GraphPage(this.totalCasesData, this.totalRecoveriesData, this.totalDeathsData);
   final totalCasesData;
+  final totalRecoveriesData;
+  final totalDeathsData;
   @override
   _GraphPageState createState() => _GraphPageState();
 }
@@ -17,7 +19,7 @@ class _GraphPageState extends State<GraphPage> {
       child: Scaffold(
         body: Center(
           child: Container(
-            child: LineChartSample1(widget.totalCasesData),
+            child: LineChartSample1(widget.totalCasesData, widget.totalRecoveriesData, widget.totalDeathsData),
           ),
         ),
       ),

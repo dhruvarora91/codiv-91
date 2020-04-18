@@ -4,7 +4,9 @@ import 'package:codiv91/Services/Network_Helper.dart';
 import 'package:flutter/material.dart';
 
 DateTime currentDate = DateTime.now().add(Duration(days: -2));
-List<int> totalData = [];
+List<int> totalCases = [];
+List<int> totalRecovered = [];
+List<int> totalDeaths = [];
 
 class GraphLoadingScreen extends StatefulWidget {
   @override
@@ -26,16 +28,19 @@ class _GraphLoadingScreenState extends State<GraphLoadingScreen> {
     for (DateTime date1 = DateTime(2020, 2, 01); date1.isBefore(currentDate); date1 = date1.add(Duration(days: 1))) {
       // print('andar');
       if (date1.day < 10) {
-         totalData.add(graphData['timelineitems'][0]
-            ['${date1.month}/0${date1.day}/20']['total_cases']);
-      } else {
-         totalData.add(graphData['timelineitems'][0]
-            ['${date1.month}/${date1.day}/20']['total_cases']);
+        totalCases.add(graphData['timelineitems'][0]['${date1.month}/0${date1.day}/20']['total_cases']);
+        totalRecovered.add(graphData['timelineitems'][0]['${date1.month}/0${date1.day}/20']['total_recoveries']);
+        totalDeaths.add(graphData['timelineitems'][0]['${date1.month}/0${date1.day}/20']['total_deaths']);
+      } 
+      else {
+        totalCases.add(graphData['timelineitems'][0]['${date1.month}/${date1.day}/20']['total_cases']);
+        totalRecovered.add(graphData['timelineitems'][0]['${date1.month}/${date1.day}/20']['total_recoveries']);
+        totalDeaths.add(graphData['timelineitems'][0]['${date1.month}/${date1.day}/20']['total_deaths']);
       }
     }
     // print(totalData);
     // print('bahar');
-    Navigator.push(context, MaterialPageRoute(builder: (context) => GraphPage(totalData)));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => GraphPage(totalCases, totalRecovered, totalDeaths)));
 
   }
 

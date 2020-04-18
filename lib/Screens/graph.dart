@@ -5,7 +5,7 @@ import 'game_loading_screen.dart';
 import 'package:flutter/cupertino.dart';
 
 int totalCases, totalRecoveries, totalDeaths;
-
+var Maxy;
 // GameLoadingScreenData glsd = GameLoadingScreenData();
 
 enum graphData { TotalCases, RecoveredCases, Deaths, All }
@@ -64,19 +64,6 @@ class LineChartSample1State extends State<LineChartSample1> {
 
   @override
   Widget build(BuildContext context) {
-    LineChartData setData(graphData GD) {
-      switch (GD) {
-        case graphData.All:
-          return All();
-        case graphData.TotalCases:
-          return TotalCases();
-        case graphData.Deaths:
-          return Deaths();
-        case graphData.RecoveredCases:
-          return RecoveredCases();
-      }
-    }
-
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
@@ -129,7 +116,7 @@ class LineChartSample1State extends State<LineChartSample1> {
                       child: Padding(
                         padding: const EdgeInsets.only(right: 16.0, left: 6.0),
                         child: LineChart(
-                          setData(GD),
+                          All(),
                           swapAnimationDuration:
                               const Duration(milliseconds: 250),
                         ),
@@ -170,15 +157,28 @@ class LineChartSample1State extends State<LineChartSample1> {
                 switch (selectedIndex) {
                   case 0:
                     GD = graphData.TotalCases;
+                    Maxy = widget
+                        .totalCasesData[widget.totalCasesData.length - 1]
+                        .toDouble();
                     break;
                   case 1:
                     GD = graphData.RecoveredCases;
+                    Maxy = widget.totalRecoveriesData[
+                            widget.totalRecoveriesData.length - 1]
+                        .toDouble();
                     break;
                   case 2:
                     GD = graphData.Deaths;
+                    Maxy = widget
+                        .totalDeathsData[widget.totalDeathsData.length - 1]
+                        .toDouble();
                     break;
                   case 3:
                     GD = graphData.All;
+                    Maxy = widget
+                        .totalCasesData[widget.totalCasesData.length - 1]
+                        .toDouble();
+
                     break;
                 }
               });
@@ -188,6 +188,19 @@ class LineChartSample1State extends State<LineChartSample1> {
         ),
       ],
     );
+  }
+
+  List<LineChartBarData> setData(graphData GD) {
+    switch (GD) {
+      case graphData.All:
+        return AllData();
+      case graphData.TotalCases:
+        return TotalCasesData();
+      case graphData.Deaths:
+        return DeathsData();
+      case graphData.RecoveredCases:
+        return RecoveredCasesData();
+    }
   }
 
   LineChartData All() {
@@ -250,9 +263,9 @@ class LineChartSample1State extends State<LineChartSample1> {
       ),
       minX: 0,
       maxX: widget.totalCasesData.length.toDouble(),
-      maxY: widget.totalCasesData[widget.totalCasesData.length - 1].toDouble(),
+      maxY: Maxy,
       minY: 0,
-      lineBarsData: AllData(),
+      lineBarsData: setData(GD),
     );
   }
 
@@ -309,71 +322,71 @@ class LineChartSample1State extends State<LineChartSample1> {
     ];
   }
 
-  LineChartData TotalCases() {
-    return LineChartData(
-      lineTouchData: LineTouchData(
-        touchTooltipData: LineTouchTooltipData(
-          tooltipBgColor: Colors.blueGrey.withOpacity(0.8),
-        ),
-        touchCallback: (LineTouchResponse touchResponse) {},
-        handleBuiltInTouches: true,
-      ),
-      gridData: FlGridData(
-        show: false,
-      ),
-      titlesData: FlTitlesData(
-        bottomTitles: SideTitles(
-          showTitles: true,
-          reservedSize: 22,
-          textStyle: const TextStyle(
-            color: Color(0xff72719b),
-            fontWeight: FontWeight.bold,
-            fontSize: 16,
-          ),
-          margin: 10,
-          getTitles: (value) {
-            return '';
-          },
-        ),
-        leftTitles: SideTitles(
-          showTitles: true,
-          textStyle: const TextStyle(
-            color: Color(0xff75729e),
-            fontWeight: FontWeight.bold,
-            fontSize: 14,
-          ),
-          getTitles: (value) {
-            return '';
-          },
-          margin: 8,
-          reservedSize: 30,
-        ),
-      ),
-      borderData: FlBorderData(
-        show: true,
-        border: const Border(
-          bottom: BorderSide(
-            color: Color(0xff4e4965),
-            width: 4,
-          ),
-          left: BorderSide(
-            color: Colors.transparent,
-          ),
-          right: BorderSide(
-            color: Colors.transparent,
-          ),
-          top: BorderSide(
-            color: Colors.transparent,
-          ),
-        ),
-      ),
-      minX: 0,
-      maxX: widget.totalCasesData.length.toDouble(),
-      maxY: widget.totalCasesData[widget.totalCasesData.length - 1].toDouble(),
-      minY: 0,
-      lineBarsData: TotalCasesData(),
-    );
-  }
+//  LineChartData TotalCases() {
+//    return LineChartData(
+//      lineTouchData: LineTouchData(
+//        touchTooltipData: LineTouchTooltipData(
+//          tooltipBgColor: Colors.blueGrey.withOpacity(0.8),
+//        ),
+//        touchCallback: (LineTouchResponse touchResponse) {},
+//        handleBuiltInTouches: true,
+//      ),
+//      gridData: FlGridData(
+//        show: false,
+//      ),
+//      titlesData: FlTitlesData(
+//        bottomTitles: SideTitles(
+//          showTitles: true,
+//          reservedSize: 22,
+//          textStyle: const TextStyle(
+//            color: Color(0xff72719b),
+//            fontWeight: FontWeight.bold,
+//            fontSize: 16,
+//          ),
+//          margin: 10,
+//          getTitles: (value) {
+//            return '';
+//          },
+//        ),
+//        leftTitles: SideTitles(
+//          showTitles: true,
+//          textStyle: const TextStyle(
+//            color: Color(0xff75729e),
+//            fontWeight: FontWeight.bold,
+//            fontSize: 14,
+//          ),
+//          getTitles: (value) {
+//            return '';
+//          },
+//          margin: 8,
+//          reservedSize: 30,
+//        ),
+//      ),
+//      borderData: FlBorderData(
+//        show: true,
+//        border: const Border(
+//          bottom: BorderSide(
+//            color: Color(0xff4e4965),
+//            width: 4,
+//          ),
+//          left: BorderSide(
+//            color: Colors.transparent,
+//          ),
+//          right: BorderSide(
+//            color: Colors.transparent,
+//          ),
+//          top: BorderSide(
+//            color: Colors.transparent,
+//          ),
+//        ),
+//      ),
+//      minX: 0,
+//      maxX: widget.totalCasesData.length.toDouble(),
+//      maxY: widget.totalCasesData[widget.totalCasesData.length - 1].toDouble(),
+//      minY: 0,
+//      lineBarsData: TotalCasesData(),
+//    );
+//  }
 
   List<LineChartBarData> TotalCasesData() {
     final LineChartBarData lineChartBarData1 = LineChartBarData(
@@ -407,72 +420,72 @@ class LineChartSample1State extends State<LineChartSample1> {
     ];
   }
 
-  LineChartData Deaths() {
-    return LineChartData(
-      lineTouchData: LineTouchData(
-        touchTooltipData: LineTouchTooltipData(
-          tooltipBgColor: Colors.blueGrey.withOpacity(0.8),
-        ),
-        touchCallback: (LineTouchResponse touchResponse) {},
-        handleBuiltInTouches: true,
-      ),
-      gridData: FlGridData(
-        show: false,
-      ),
-      titlesData: FlTitlesData(
-        bottomTitles: SideTitles(
-          showTitles: true,
-          reservedSize: 22,
-          textStyle: const TextStyle(
-            color: Color(0xff72719b),
-            fontWeight: FontWeight.bold,
-            fontSize: 16,
-          ),
-          margin: 10,
-          getTitles: (value) {
-            return '';
-          },
-        ),
-        leftTitles: SideTitles(
-          showTitles: true,
-          textStyle: const TextStyle(
-            color: Color(0xff75729e),
-            fontWeight: FontWeight.bold,
-            fontSize: 14,
-          ),
-          getTitles: (value) {
-            return '';
-          },
-          margin: 8,
-          reservedSize: 30,
-        ),
-      ),
-      borderData: FlBorderData(
-        show: true,
-        border: const Border(
-          bottom: BorderSide(
-            color: Color(0xff4e4965),
-            width: 4,
-          ),
-          left: BorderSide(
-            color: Colors.transparent,
-          ),
-          right: BorderSide(
-            color: Colors.transparent,
-          ),
-          top: BorderSide(
-            color: Colors.transparent,
-          ),
-        ),
-      ),
-      minX: 0,
-      maxX: widget.totalDeathsData.length.toDouble(),
-      maxY:
-          widget.totalDeathsData[widget.totalDeathsData.length - 1].toDouble(),
-      minY: 0,
-      lineBarsData: DeathsData(),
-    );
-  }
+//  LineChartData Deaths() {
+//    return LineChartData(
+//      lineTouchData: LineTouchData(
+//        touchTooltipData: LineTouchTooltipData(
+//          tooltipBgColor: Colors.blueGrey.withOpacity(0.8),
+//        ),
+//        touchCallback: (LineTouchResponse touchResponse) {},
+//        handleBuiltInTouches: true,
+//      ),
+//      gridData: FlGridData(
+//        show: false,
+//      ),
+//      titlesData: FlTitlesData(
+//        bottomTitles: SideTitles(
+//          showTitles: true,
+//          reservedSize: 22,
+//          textStyle: const TextStyle(
+//            color: Color(0xff72719b),
+//            fontWeight: FontWeight.bold,
+//            fontSize: 16,
+//          ),
+//          margin: 10,
+//          getTitles: (value) {
+//            return '';
+//          },
+//        ),
+//        leftTitles: SideTitles(
+//          showTitles: true,
+//          textStyle: const TextStyle(
+//            color: Color(0xff75729e),
+//            fontWeight: FontWeight.bold,
+//            fontSize: 14,
+//          ),
+//          getTitles: (value) {
+//            return '';
+//          },
+//          margin: 8,
+//          reservedSize: 30,
+//        ),
+//      ),
+//      borderData: FlBorderData(
+//        show: true,
+//        border: const Border(
+//          bottom: BorderSide(
+//            color: Color(0xff4e4965),
+//            width: 4,
+//          ),
+//          left: BorderSide(
+//            color: Colors.transparent,
+//          ),
+//          right: BorderSide(
+//            color: Colors.transparent,
+//          ),
+//          top: BorderSide(
+//            color: Colors.transparent,
+//          ),
+//        ),
+//      ),
+//      minX: 0,
+//      maxX: widget.totalDeathsData.length.toDouble(),
+//      maxY:
+//          widget.totalDeathsData[widget.totalDeathsData.length - 1].toDouble(),
+//      minY: 0,
+//      lineBarsData: DeathsData(),
+//    );
+//  }
 
   List<LineChartBarData> DeathsData() {
     final LineChartBarData lineChartBarData2 = LineChartBarData(
@@ -504,72 +517,72 @@ class LineChartSample1State extends State<LineChartSample1> {
     ];
   }
 
-  LineChartData RecoveredCases() {
-    return LineChartData(
-      lineTouchData: LineTouchData(
-        touchTooltipData: LineTouchTooltipData(
-          tooltipBgColor: Colors.blueGrey.withOpacity(0.8),
-        ),
-        touchCallback: (LineTouchResponse touchResponse) {},
-        handleBuiltInTouches: true,
-      ),
-      gridData: FlGridData(
-        show: false,
-      ),
-      titlesData: FlTitlesData(
-        bottomTitles: SideTitles(
-          showTitles: true,
-          reservedSize: 22,
-          textStyle: const TextStyle(
-            color: Color(0xff72719b),
-            fontWeight: FontWeight.bold,
-            fontSize: 16,
-          ),
-          margin: 10,
-          getTitles: (value) {
-            return '';
-          },
-        ),
-        leftTitles: SideTitles(
-          showTitles: true,
-          textStyle: const TextStyle(
-            color: Color(0xff75729e),
-            fontWeight: FontWeight.bold,
-            fontSize: 14,
-          ),
-          getTitles: (value) {
-            return '';
-          },
-          margin: 8,
-          reservedSize: 30,
-        ),
-      ),
-      borderData: FlBorderData(
-        show: true,
-        border: const Border(
-          bottom: BorderSide(
-            color: Color(0xff4e4965),
-            width: 4,
-          ),
-          left: BorderSide(
-            color: Colors.transparent,
-          ),
-          right: BorderSide(
-            color: Colors.transparent,
-          ),
-          top: BorderSide(
-            color: Colors.transparent,
-          ),
-        ),
-      ),
-      minX: 0,
-      maxX: widget.totalRecoveriesData.length.toDouble(),
-      maxY: widget.totalRecoveriesData[widget.totalCasesData.length - 1]
-          .toDouble(),
-      minY: 0,
-      lineBarsData: RecoveredCasesData(),
-    );
-  }
+//  LineChartData RecoveredCases() {
+//    return LineChartData(
+//      lineTouchData: LineTouchData(
+//        touchTooltipData: LineTouchTooltipData(
+//          tooltipBgColor: Colors.blueGrey.withOpacity(0.8),
+//        ),
+//        touchCallback: (LineTouchResponse touchResponse) {},
+//        handleBuiltInTouches: true,
+//      ),
+//      gridData: FlGridData(
+//        show: false,
+//      ),
+//      titlesData: FlTitlesData(
+//        bottomTitles: SideTitles(
+//          showTitles: true,
+//          reservedSize: 22,
+//          textStyle: const TextStyle(
+//            color: Color(0xff72719b),
+//            fontWeight: FontWeight.bold,
+//            fontSize: 16,
+//          ),
+//          margin: 10,
+//          getTitles: (value) {
+//            return '';
+//          },
+//        ),
+//        leftTitles: SideTitles(
+//          showTitles: true,
+//          textStyle: const TextStyle(
+//            color: Color(0xff75729e),
+//            fontWeight: FontWeight.bold,
+//            fontSize: 14,
+//          ),
+//          getTitles: (value) {
+//            return '';
+//          },
+//          margin: 8,
+//          reservedSize: 30,
+//        ),
+//      ),
+//      borderData: FlBorderData(
+//        show: true,
+//        border: const Border(
+//          bottom: BorderSide(
+//            color: Color(0xff4e4965),
+//            width: 4,
+//          ),
+//          left: BorderSide(
+//            color: Colors.transparent,
+//          ),
+//          right: BorderSide(
+//            color: Colors.transparent,
+//          ),
+//          top: BorderSide(
+//            color: Colors.transparent,
+//          ),
+//        ),
+//      ),
+//      minX: 0,
+//      maxX: widget.totalRecoveriesData.length.toDouble(),
+//      maxY: widget.totalRecoveriesData[widget.totalCasesData.length - 1]
+//          .toDouble(),
+//      minY: 0,
+//      lineBarsData: RecoveredCasesData(),
+//    );
+//  }
 
   List<LineChartBarData> RecoveredCasesData() {
     final LineChartBarData lineChartBarData3 = LineChartBarData(

@@ -168,16 +168,16 @@ class LineChartSample1State extends State<LineChartSample1> {
               print(selectedIndex);
               setState(() {
                 switch (selectedIndex) {
-                  case 1:
+                  case 0:
                     GD = graphData.TotalCases;
                     break;
-                  case 2:
+                  case 1:
                     GD = graphData.RecoveredCases;
                     break;
-                  case 3:
+                  case 2:
                     GD = graphData.Deaths;
                     break;
-                  case 4:
+                  case 3:
                     GD = graphData.All;
                     break;
                 }
@@ -259,16 +259,6 @@ class LineChartSample1State extends State<LineChartSample1> {
   List<LineChartBarData> AllData() {
     final LineChartBarData lineChartBarData1 = LineChartBarData(
       spots: totalCasesList,
-//      [
-//
-////        FlSpot(1, 8),
-////        FlSpot(3, 1.5),
-////        FlSpot(5, 1.4),
-////        FlSpot(7, 3.4),
-////        FlSpot(10, 2),
-////        FlSpot(12, 2.2),
-////        FlSpot(13, 1.8),
-//      ],
       isCurved: true,
       colors: [
         const Color(0xff4af699),
@@ -284,14 +274,6 @@ class LineChartSample1State extends State<LineChartSample1> {
     );
     final LineChartBarData lineChartBarData2 = LineChartBarData(
       spots: totalDeathsList,
-//      [
-//        FlSpot(1, 1),
-//        FlSpot(3, 2.8),
-//        FlSpot(7, 1.2),
-//        FlSpot(10, 2.8),
-//        FlSpot(12, 2.6),
-//        FlSpot(13, 3.9),
-//      ],
       isCurved: true,
       colors: [
         const Color(0xffaa4cfc),
@@ -307,13 +289,6 @@ class LineChartSample1State extends State<LineChartSample1> {
     );
     final LineChartBarData lineChartBarData3 = LineChartBarData(
       spots: totalRecoveryList,
-//      [
-//        FlSpot(1, 2.8),
-//        FlSpot(3, 1.9),
-//        FlSpot(6, 3),
-//        FlSpot(10, 1.3),
-//        FlSpot(13, 2.5),
-//      ],
       isCurved: true,
       colors: const [
         Color(0xff27b6fc),

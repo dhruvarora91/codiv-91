@@ -5,7 +5,7 @@ import 'game_loading_screen.dart';
 
 int totalCases, totalRecoveries, totalDeaths;
 
-GameLoadingScreenData glsd = GameLoadingScreenData();
+// GameLoadingScreenData glsd = GameLoadingScreenData();
 
 class LineChartSample1 extends StatefulWidget {
   LineChartSample1(
@@ -41,7 +41,7 @@ class LineChartSample1State extends State<LineChartSample1> {
       children: <Widget>[
         FlatButton(
             onPressed: () {
-              print(glsd.getList());
+              // print(glsd.getList());
             },
             child: null),
         AspectRatio(

@@ -26,7 +26,12 @@ Future<void> _handleSignIn() async {
   }
 }
 
-class Settings extends StatelessWidget {
+class Settings extends StatefulWidget {
+  @override
+  _SettingsState createState() => _SettingsState();
+}
+
+class _SettingsState extends State<Settings> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -69,10 +74,12 @@ class Settings extends StatelessWidget {
                           ),
                           GestureDetector(
                             onTap: () {
-                              playnpause();
+                              setState(() {
+                                playnpause();
+                              });
                             },
                             child: Icon(
-                              Icons.volume_mute,
+                              playing ? Icons.volume_up : Icons.volume_mute,
                               size: 20.0,
                             ),
                           ),

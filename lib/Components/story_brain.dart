@@ -80,6 +80,33 @@ class StoryBrain {
         characterImg: 'images/Intelligence1.png',
         factorChoice1: [0, -5, 5, 0],
         factorChoice2: [0, 0, -7, 0]),
+    Story(
+        question:
+            'A lot of fake news is spreading amongst the people, will the government take any action against the people spreading false news and claims?',
+        choice1: 'Yes',
+        choice2: 'No',
+        characterName: 'Media',
+        characterImg: 'images/Media2.png',
+        factorChoice1: [0, 3, 0, 0],
+        factorChoice2: [0, -5, 0, -4]),
+    Story(
+        question:
+            'Some individuals are trying to hide their travel history of the past few weeks, can monitor them to find if they are possible carriers for the virus?',
+        choice1: 'Yes',
+        choice2: 'No',
+        characterName: 'Intelligence',
+        characterImg: 'images/Intelligence2.png',
+        factorChoice1: [-3, -5, 0, 3],
+        factorChoice2: [-5, 0, 0, -6]),
+    Story(
+        question:
+            'Can we use places of worship as centres for the distribution of necessities to people?',
+        choice1: 'Yes',
+        choice2: 'No',
+        characterName: 'Religious Leader',
+        characterImg: 'images/Religiousleader2.png',
+        factorChoice1: [0, 3, 0, -3],
+        factorChoice2: [0, -5, 0, 0]),
   ];
   void updateIndex(int newIndex) {
     if (newIndex < getLength()) index = newIndex;

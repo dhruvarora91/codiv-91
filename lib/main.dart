@@ -9,8 +9,8 @@ void main() {
         scaffoldBackgroundColor: Colors.black,
         primaryColor: Colors.black,
       ),
-      home: Codiv(),
-      // home: GameLoadingScreen(),
+//      home: Codiv(),
+      home: GameLoadingScreen(),
     ),
   );
 }

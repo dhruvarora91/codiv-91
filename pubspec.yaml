@@ -33,6 +33,7 @@ dependencies:
   fl_chart: ^0.9.0
   intl: ^0.15.8
   animated_text_kit: ^2.0.0
+  audioplayers: ^0.15.1
 
 dev_dependencies:
   flutter_test:
@@ -54,6 +55,8 @@ flutter:
   assets:
 
   - images/
+  - assets/
+
   #  - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

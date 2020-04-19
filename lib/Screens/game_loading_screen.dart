@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'mainPage.dart';
+import 'package:audioplayers/audio_cache.dart';
+
+final player = AudioCache();
 
 class GameLoadingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    player.loop('timerider.mp3');
+
     return SafeArea(
       child: Scaffold(
         body: Center(

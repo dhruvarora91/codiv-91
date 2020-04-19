@@ -29,6 +29,7 @@ class _GamePageState extends State<GamePage> {
     personVar = 20;
     foodVar = 20;
     healthVar = 20;
+    storyBrain.updateIndex(0);
   }
 
   void returnToMain() {

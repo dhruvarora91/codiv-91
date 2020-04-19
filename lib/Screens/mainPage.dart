@@ -3,11 +3,17 @@ import 'package:codiv91/Screens/graph_loading_screen_new.dart';
 import 'package:codiv91/Screens/graph_page.dart';
 import 'package:codiv91/Screens/settings.dart';
 import 'package:flutter/material.dart';
-
-
 import '../Components/bottom_button.dart';
+// import 'package:audioplayers/audio_cache.dart';
+
+// final player = AudioCache();
+
+// void playMusic() {
+// player.play('timerider.mp3');
+// }
 
 class Codiv extends StatelessWidget {
+  // playMusic();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,7 +43,6 @@ class Codiv extends StatelessWidget {
                   image: AssetImage("images/graph.gif"),
                 ),
               ),
-//              child: LineChartSample1(),
             ),
           ),
           Expanded(

@@ -6,6 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'Stats_Page.dart';
+import '../Components/audio.dart';
 
 import '../Components/reusable_card.dart';
 import 'stats_loading_screen.dart';
@@ -66,23 +67,14 @@ class Settings extends StatelessWidget {
                             'Music',
                             style: kSettingsTextStyle,
                           ),
-                          Icon(
-                            Icons.volume_mute,
-                            size: 20.0,
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 20.0),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Text(
-                            'Sound Effects',
-                            style: kSettingsTextStyle,
-                          ),
-                          Icon(
-                            Icons.music_note,
-                            size: 20.0,
+                          GestureDetector(
+                            onTap: () {
+                              playnpause();
+                            },
+                            child: Icon(
+                              Icons.volume_mute,
+                              size: 20.0,
+                            ),
                           ),
                         ],
                       ),

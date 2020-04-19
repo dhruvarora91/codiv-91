@@ -6,7 +6,7 @@
 
 Amid the pandemic, there is a lot of misinformation and lack of awareness amongst the masses.
 
-<img src="https://lh6.googleusercontent.com/arSt9SAdAKg1nYFYyB4zARlz8UeOsZCr-9J2ewvqWjbfR4L_CRzcalib64IIcyVTYPiQ1gSPSSsrUw9XlNT1-1kfddzwsx1jPIonPJ3uq6wjavT7yvk7JjQ6iahYxR2Vf-2rX1uP" alt="img" style="zoom:33%;" />
+<img src="https://lh6.googleusercontent.com/arSt9SAdAKg1nYFYyB4zARlz8UeOsZCr-9J2ewvqWjbfR4L_CRzcalib64IIcyVTYPiQ1gSPSSsrUw9XlNT1-1kfddzwsx1jPIonPJ3uq6wjavT7yvk7JjQ6iahYxR2Vf-2rX1uP" alt="img" style="zoom: 50%;" />
 
 To tackle this issue, and provide the people with the relevant information in a fun manner we are developing a small game.
 

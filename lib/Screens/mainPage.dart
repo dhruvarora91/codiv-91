@@ -31,7 +31,7 @@ class Codiv extends StatelessWidget {
               child: GestureDetector(
                 onTap: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => GraphLoadingScreen()));
+                      MaterialPageRoute(builder: (context) => GraphPage()));
                 },
                 child: Image(
                   image: AssetImage("images/graph.gif"),

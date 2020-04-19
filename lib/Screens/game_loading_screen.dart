@@ -5,11 +5,11 @@ import 'package:audioplayers/audio_cache.dart';
 
 final player = AudioCache();
 
+
 class GameLoadingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    player.loop('timerider.mp3');
-
+    
     return SafeArea(
       child: Scaffold(
         body: Center(
@@ -22,6 +22,7 @@ class GameLoadingScreen extends StatelessWidget {
             textAlign: TextAlign.start,
             alignment: AlignmentDirectional.topStart,
             onFinished: () {
+              player.loop('timerider.mp3');
               Navigator.push(
                   context, MaterialPageRoute(builder: (context) => Codiv()));
             },

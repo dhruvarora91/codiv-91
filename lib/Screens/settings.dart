@@ -1,11 +1,11 @@
 import 'package:codiv91/Screens/News_Page.dart';
-import 'package:codiv91/Screens/Stats_Page.dart';
 import 'package:codiv91/Screens/preventive_measures.dart';
 import 'package:codiv91/Screens/stats_loading_screen.dart';
 import 'package:codiv91/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'Stats_Page.dart';
 
 import '../Components/reusable_card.dart';
 import 'stats_loading_screen.dart';

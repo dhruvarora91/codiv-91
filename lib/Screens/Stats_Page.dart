@@ -58,20 +58,6 @@ class _MainScreenState extends State<MainScreen> {
     // });
   }
 
-  // void updateUI(dataGlobal, dataIndia) {
-  //   // setState(() {
-  //   //   totalCases = dataGlobal['results'][0]['total_cases'];
-  //   //   totalNewCasesToday = dataGlobal['results'][0]['total_new_cases_today'];
-  //   //   totalNewDeathsToday = dataGlobal['results'][0]['total_new_deaths_today'];
-  //   //   totalDeath = dataGlobal['results'][0]['total_deaths'];
-  //   //   totalCasesIndia = dataIndia["countrydata"][0]["total_cases"];
-  //   //   totalNewIndiaCasesToday = dataIndia["countrydata"][0]["total_new_cases_today"];
-  //   //   totalDeathIndia = dataIndia["countrydata"][0]["total_deaths"];
-  //   //   totalNewDeathsTodayIndia = dataIndia["countrydata"][0]["total_new_deaths_today"];
-  //   //   totalActiveCases = dataIndia["countrydata"][0]["total_active_cases"];
-  //   // });
-  // }
-
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(

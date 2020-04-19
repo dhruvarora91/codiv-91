@@ -9,6 +9,7 @@ import '../Components/story_brain.dart';
 enum dir { left, right }
 
 int moneyVar, personVar, foodVar, healthVar;
+Color moneyColor, personColor, foodColor, healthColor;
 
 class GamePage extends StatefulWidget {
   @override
@@ -29,7 +30,36 @@ class _GamePageState extends State<GamePage> {
     personVar = 20;
     foodVar = 20;
     healthVar = 20;
+    moneyColor = Colors.grey;
+    personColor = Colors.grey;
+    foodColor = Colors.grey;
+    healthColor = Colors.grey;
     storyBrain.updateIndex(0);
+  }
+
+  void colorBlink(int factor, int change) {
+    Color newColor;
+    if (change > 0)
+      newColor = Colors.green;
+    else if (change < 0)
+      newColor = Colors.red;
+    else
+      newColor = Colors.grey;
+
+    switch (factor) {
+      case 1:
+        moneyColor = newColor;
+        break;
+      case 2:
+        personColor = newColor;
+        break;
+      case 3:
+        foodColor = newColor;
+        break;
+      case 4:
+        healthColor = newColor;
+        break;
+    }
   }
 
   void returnToMain() {
@@ -127,18 +157,22 @@ class _GamePageState extends State<GamePage> {
                       Factors(
                         icon: Icons.attach_money,
                         value: moneyVar,
+                        color: moneyColor,
                       ),
                       Factors(
                         icon: Icons.person_outline,
                         value: personVar,
+                        color: personColor,
                       ),
                       Factors(
                         icon: Icons.restaurant,
                         value: foodVar,
+                        color: foodColor,
                       ),
                       Factors(
                         icon: Icons.local_hospital,
                         value: healthVar,
+                        color: healthColor,
                       ),
                     ],
                   ),
@@ -233,9 +267,26 @@ class _GamePageState extends State<GamePage> {
                           if (orientation == CardSwipeOrientation.LEFT) {
                             setState(() {
                               moneyVar += storyBrain.updateMoneyLeft();
+                              colorBlink(1, storyBrain.updateMoneyLeft());
+
                               personVar += storyBrain.updatePersonLeft();
+                              colorBlink(2, storyBrain.updatePersonLeft());
+
                               foodVar += storyBrain.updateFoodLeft();
+                              colorBlink(3, storyBrain.updateFoodLeft());
+
                               healthVar += storyBrain.updateHealthLeft();
+                              colorBlink(4, storyBrain.updateHealthLeft());
+                              Future.delayed(const Duration(milliseconds: 500),
+                                  () {
+                                setState(() {
+                                  moneyColor = Colors.grey;
+                                  personColor = Colors.grey;
+                                  foodColor = Colors.grey;
+                                  healthColor = Colors.grey;
+                                });
+                              });
+
                               checkFactors(index);
                             });
                             // setState(() {
@@ -246,10 +297,27 @@ class _GamePageState extends State<GamePage> {
                               CardSwipeOrientation.RIGHT) {
                             setState(() {
                               moneyVar += storyBrain.updateMoneyRight();
+                              colorBlink(1, storyBrain.updateMoneyRight());
+
                               personVar += storyBrain.updatePersonRight();
+                              colorBlink(2, storyBrain.updatePersonRight());
+
                               foodVar += storyBrain.updateFoodRight();
+                              colorBlink(3, storyBrain.updateFoodRight());
+
                               healthVar += storyBrain.updateHealthRight();
-                              checkFactors(index + 1);
+                              colorBlink(4, storyBrain.updateHealthRight());
+                              Future.delayed(const Duration(milliseconds: 500),
+                                  () {
+                                setState(() {
+                                  moneyColor = Colors.grey;
+                                  personColor = Colors.grey;
+                                  foodColor = Colors.grey;
+                                  healthColor = Colors.grey;
+                                });
+                              });
+
+                              checkFactors(index);
                             });
 //                            setState(() {
 //                              moneyVar--;

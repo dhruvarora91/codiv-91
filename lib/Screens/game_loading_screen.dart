@@ -6,6 +6,7 @@ import '../Components/audio.dart';
 class GameLoadingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+
     return SafeArea(
       child: Scaffold(
         body: Center(

@@ -1,4 +1,5 @@
 import 'package:codiv91/Screens/News_Page.dart';
+import 'package:codiv91/Screens/Stats_Page.dart';
 import 'package:codiv91/Screens/preventive_measures.dart';
 import 'package:codiv91/Screens/stats_loading_screen.dart';
 import 'package:codiv91/constants.dart';
@@ -125,7 +126,7 @@ class Settings extends StatelessWidget {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => StatsLoadingScreen()));
+                                builder: (context) => MainScreen()));
                       },
                       child: Icon(Icons.format_list_numbered),
                     ),

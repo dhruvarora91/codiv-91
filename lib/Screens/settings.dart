@@ -5,6 +5,7 @@ import 'package:codiv91/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'Stats_Page.dart';
 
 import '../Components/reusable_card.dart';
 import 'stats_loading_screen.dart';
@@ -125,7 +126,7 @@ class Settings extends StatelessWidget {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => StatsLoadingScreen()));
+                                builder: (context) => MainScreen()));
                       },
                       child: Icon(Icons.format_list_numbered),
                     ),

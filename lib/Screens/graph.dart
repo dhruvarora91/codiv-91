@@ -65,69 +65,75 @@ class LineChartSample1State extends State<LineChartSample1> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
         AspectRatio(
-          aspectRatio: 0.8,
-          child: Container(
-            decoration: BoxDecoration(
-              borderRadius: const BorderRadius.all(Radius.circular(18)),
-              gradient: LinearGradient(
-                colors: const [
-                  Color(0xff2c274c),
-                  Color(0xff46426c),
-                ],
-                begin: Alignment.bottomCenter,
-                end: Alignment.topCenter,
+            aspectRatio: 0.8,
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: const BorderRadius.all(Radius.circular(18)),
+                gradient: LinearGradient(
+        colors: const [
+          Color(0xff2c274c),
+          Color(0xff46426c),
+        ],
+        begin: Alignment.bottomCenter,
+        end: Alignment.topCenter,
+                ),
+              ),
+              child: Stack(
+                children: <Widget>[
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            const SizedBox(
+              height: 37,
+            ),
+            // const Text(
+            //   'Unfold Shop 2018',
+            //   style: TextStyle(
+            //     color: Color(0xff827daa),
+            //     fontSize: 16,
+            //   ),
+            //   textAlign: TextAlign.center,
+            // ),
+            const SizedBox(
+              height: 4,
+            ),
+            const Text(
+              'Cases',
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 32,
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 2),
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(
+              height: 37,
+            ),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.only(right: 16.0, left: 6.0),
+                child: LineChart(
+                  All(),
+                  swapAnimationDuration:
+                      const Duration(milliseconds: 250),
+                ),
               ),
             ),
-            child: Stack(
-              children: <Widget>[
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: <Widget>[
-                    const SizedBox(
-                      height: 37,
-                    ),
-                    // const Text(
-                    //   'Unfold Shop 2018',
-                    //   style: TextStyle(
-                    //     color: Color(0xff827daa),
-                    //     fontSize: 16,
-                    //   ),
-                    //   textAlign: TextAlign.center,
-                    // ),
-                    const SizedBox(
-                      height: 4,
-                    ),
-                    const Text(
-                      'Cases',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 32,
-                          fontWeight: FontWeight.bold,
-                          letterSpacing: 2),
-                      textAlign: TextAlign.center,
-                    ),
-                    const SizedBox(
-                      height: 37,
-                    ),
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.only(right: 16.0, left: 6.0),
-                        child: LineChart(
-                          All(),
-                          swapAnimationDuration:
-                              const Duration(milliseconds: 250),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                  ],
-                ),
-              ],
+            const SizedBox(
+              height: 10,
+            ),
+          ],
+        ),
+                ],
+              ),
             ),
           ),
-        ),
+        Container (
+          child: Column(children: <Widget>[
+          Text('Total Infected Cases', style: TextStyle(color: Colors.blue, fontSize: 25.0)),
+          Text('Total Recovered Cases', style: TextStyle(color: Colors.green, fontSize: 25.0)),
+          Text('Total Death Cases', style: TextStyle(color: Colors.red, fontSize: 25.0)),
+        ],),),
         Container(
           height: 200.0,
           alignment: Alignment.center,

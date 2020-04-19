@@ -8,7 +8,7 @@ final player = AudioCache();
 class GameLoadingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    player.loop('timerider.mp3');
+//    player.loop('timerider.mp3');
 
     return SafeArea(
       child: Scaffold(

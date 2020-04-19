@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import '../constants.dart';
 
 class Factors extends StatelessWidget {
-  Factors({@required this.icon, @required this.value});
+  Factors({@required this.icon, @required this.value, @required this.color});
   final IconData icon;
   final int value;
-
+  final Color color;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -14,7 +14,7 @@ class Factors extends StatelessWidget {
         Icon(
           icon,
           size: 50.0,
-          color: Colors.grey,
+          color: color,
         ),
         Text(
           value.toString(),

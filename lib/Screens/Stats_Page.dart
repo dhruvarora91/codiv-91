@@ -50,6 +50,11 @@ class _MainScreenState extends State<MainScreen> {
       totalDeathIndia = dataIndia["countrydata"][0]["total_deaths"];
       totalNewDeathsTodayIndia = dataIndia["countrydata"][0]["total_new_deaths_today"];
       totalActiveCases = dataIndia["countrydata"][0]["total_active_cases"];
+      Map data = {
+        'Global': dataGlobal,
+        'India' : dataIndia,
+      };
+      return data;
     // });
   }
 
